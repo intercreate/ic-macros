@@ -16,6 +16,9 @@ extern "C" {
 #define _IC_Z_DO_CONCAT(x, y) x##y
 #define _IC_Z_CONCAT(x, y) _IC_Z_DO_CONCAT(x, y)
 
+#define _IC_Z_DO_STR(x) #x
+#define _IC_Z_STR(x) _IC_Z_DO_STR(x)
+
 /**
  * @brief Compile-time assertion.
  * @param expr An expression that is a compile-time constant.
@@ -48,7 +51,10 @@ extern "C" {
  * @param expr An expression that is a compile-time constant.
  * @param msg Optional string to describe the assertion should it fail.
  */
-#    define IC_BUILD_ASSERT(expr, msg...) _Static_assert(expr, "" msg)
+#    define IC_BUILD_ASSERT(expr, msg...) \
+        _Static_assert( \
+            expr, "" msg " See " __FILE__ ":" _IC_Z_STR(__LINE__) ", expr: " _IC_Z_DO_STR(expr) \
+        )
 #endif /* defined(__cplusplus) && (__cplusplus >= 201103L) */
 
 #ifdef __cplusplus
