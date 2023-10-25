@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Copyright (c) 2023 Intercreate, Inc.
+# SPDX-License-Identifier: Apache-2.0
+#
+# Authors: J.P. Hutchins <jp@intercreate.io>
+
+set -eo pipefail
+
+# Check formatting
+cmake -P lint.cmake
+
+# Configure and run the tests
+cmake -P test.cmake
