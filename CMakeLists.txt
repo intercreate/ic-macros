@@ -17,15 +17,16 @@ if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
 
     target_compile_options(${PROJECT_NAME}
         INTERFACE
-        -Wall
-        -Wextra
-        -Wshadow
-        -Wconversion
-        -Wdouble-promotion
-        -Wformat=2
-        -Wformat-truncation
-        -Wundef
-        -fno-common
+        # -Wall
+        # -Wextra
+        # -Wshadow
+        # -Wconversion
+        # -Wdouble-promotion
+        # -Wformat=2
+        # -Wformat-truncation
+        # -Wundef
+        # -fno-common
+        # -Wtype-limits
     )
 
     add_subdirectory(tests)
