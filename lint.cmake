@@ -8,25 +8,25 @@ file(GLOB_RECURSE files_to_format
 )
 
 if("${CMAKE_ARGV3}" STREQUAL "format")
-    message("Running clang-format in-place")
+    message("Running clang-format-18 in-place")
     foreach(file ${files_to_format})
         execute_process(
-            COMMAND clang-format "-i" "${file}"
+            COMMAND clang-format-18 "-i" "${file}"
             RESULT_VARIABLE res 
         )
         if(NOT ${res} STREQUAL "0")
-            message(FATAL_ERROR "clang-format error")
+            message(FATAL_ERROR "clang-format-18 error")
         endif()
     endforeach()
 endif()
 
 foreach(file ${files_to_format})
     execute_process(
-        COMMAND clang-format "--dry-run" "--Werror" "${file}"
+        COMMAND clang-format-18 "--dry-run" "--Werror" "${file}"
         RESULT_VARIABLE res 
     )
     if(NOT ${res} STREQUAL "0")
-        message(FATAL_ERROR "clang-format error")
+        message(FATAL_ERROR "clang-format-18 error")
     endif()
 endforeach()
-message("clang-format passed")
+message("clang-format-18 passed")
