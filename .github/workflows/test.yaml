@@ -12,6 +12,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: apt update
+        run: apt update
+
       - name: Install Packages
         run: >
           sudo apt install ninja-build
