@@ -48,7 +48,9 @@ jobs:
           cmake -P test.cmake arm-none-eabi-gcc
       
       - name: Test arm-zephyr-eabi-gcc
-        run: cmake -P test.cmake arm-zephyr-eabi-gcc
+        run: |
+          . ./envr.ps1
+          cmake -P test.cmake arm-zephyr-eabi-gcc
       
       - name: Test aarch64-linux-gnu-gcc
         run: cmake -P test.cmake aarch64-linux-gnu-gcc
