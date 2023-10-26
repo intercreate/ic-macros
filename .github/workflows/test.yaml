@@ -21,10 +21,12 @@ jobs:
           qemu-user qemu-user-static gcc-aarch64-linux-gnu
           g++-aarch64-linux-gnu binutils-aarch64-linux-gnu
       
-      - name: Install xPack + arm-none-eabi-gcc
-        run: |
-          npm install --global xpm@latest
-          xpm install @xpack-dev-tools/arm-none-eabi-gcc@latest
+      - name: Install xPack XPM
+        run: npm install --global xpm@latest
+      
+      - name: Install arm-none-eabi-gcc
+        continue-on-error: true
+        run: xpm install @xpack-dev-tools/arm-none-eabi-gcc@latest
       
       - name: Install Zephyr SDK
         run: |
