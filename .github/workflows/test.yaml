@@ -12,8 +12,34 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Install dependencies
-        run: sudo apt install ninja-build 
+      - name: Install Packages
+        run: >
+          sudo apt install ninja-build
+          qemu-user qemu-user-static gcc-aarch64-linux-gnu
+          g++-aarch64-linux-gnu binutils-aarch64-linux-gnu
       
-      - name: Run tests
+      - name: Install xPack + arm-none-eabi-gcc
+        run: |
+          npm install --global xpm@latest
+          xpm install @xpack-dev-tools/arm-none-eabi-gcc@latest
+      
+      - name: Install Zephyr SDK
+        run: |
+          cd ~
+          wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.3/zephyr-sdk-0.16.3_linux-x86_64.tar.xz
+          wget -O - https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.3/sha256.sum | shasum --check --ignore-missing
+          tar xf zephyr-sdk-0.16.3_linux-x86_64.tar.xz
+          cd zephyr-sdk-0.16.3
+          ./setup.sh -t arm-zephyr-eabi
+      
+      - name: Test native
         run: cmake -P test.cmake
+      
+      - name: Test arm-none-eabi-gcc
+        run: cmake -P test.cmake arm-none-eabi-gcc
+      
+      - name: Test arm-zephyr-eabi-gcc
+        run: cmake -P test.cmake arm-zephyr-eabi-gcc
+      
+      - name: Test aarch64-linux-gnu-gcc
+        run: cmake -P test.cmake aarch64-linux-gnu-gcc

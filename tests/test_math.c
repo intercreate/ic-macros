@@ -23,7 +23,23 @@ DEFINE_FFF_GLOBALS;
 
 #include <ic_macros.h>
 
+volatile uint32_t call_count = 0;
+
+int64_t __attribute__((noinline)) id(int64_t x) {
+    call_count += 1;
+    return x;
+}
+
+#define ASSERT_CALLED(n) \
+    TEST_ASSERT_EQUAL(n, call_count); \
+    call_count = 0
+
+static int test_IC_G_ABS = IC_G_ABS(-1);
+
 void test_IC_ABS(void) {
+    /* compile-time */
+    TEST_ASSERT_EQUAL(1, test_IC_G_ABS);
+
     IC_ASSERT_CONSTANT(IC_ABS(0));
 
     TEST_ASSERT_EQUAL(0, IC_ABS(0));
@@ -35,10 +51,21 @@ void test_IC_ABS(void) {
     TEST_ASSERT_EQUAL(1., IC_ABS(-1.));
     TEST_ASSERT_EQUAL(2147483647L, IC_ABS(-2147483647L));  // i32
     TEST_ASSERT_EQUAL(9223372036854775807LL, IC_ABS(-9223372036854775807LL));  // i64
+
+    /* runtime */
+    int x = 1;
+    IC_ASSERT_NOT_CONSTANT(IC_ABS(x));
+    x = -1;
+    TEST_ASSERT_EQUAL(1, IC_ABS(id(x)));
+    ASSERT_CALLED(1);
 }
 
+static int test_IC_G_IROUND_UP = IC_G_IROUND_UP(0, 1);
 
 void test_IC_IROUND_UP(void) {
+    /* compile-time */
+    TEST_ASSERT_EQUAL(0, test_IC_G_IROUND_UP);
+
     IC_ASSERT_CONSTANT(IC_IROUND_UP(0, 1));
 
     TEST_ASSERT_EQUAL(0, IC_IROUND_UP(0, 1));
@@ -57,11 +84,41 @@ void test_IC_IROUND_UP(void) {
     TEST_ASSERT_EQUAL(-32, IC_IROUND_UP(-32, 32));
     TEST_ASSERT_EQUAL(-32, IC_IROUND_UP(-63, 32));
 
+    /* runtime */
+    int x = 1;
+    IC_ASSERT_NOT_CONSTANT(IC_IROUND_UP(x, 32));
+
+    x = 0;
+    TEST_ASSERT_EQUAL(0, IC_IROUND_UP(id(x), 1));
+    ASSERT_CALLED(1);
+    TEST_ASSERT_EQUAL(0, IC_IROUND_UP(id(x), 3));
+    ASSERT_CALLED(1);
+    TEST_ASSERT_EQUAL(0, IC_IROUND_UP(id(x), 4));
+    ASSERT_CALLED(1);
+    TEST_ASSERT_EQUAL(0, IC_IROUND_UP(id(x), 32));
+    ASSERT_CALLED(1);
+
+    x = 1;
+    TEST_ASSERT_EQUAL(1, IC_IROUND_UP(x, 1));
+    TEST_ASSERT_EQUAL(3, IC_IROUND_UP(x, 3));
+    TEST_ASSERT_EQUAL(4, IC_IROUND_UP(x, 4));
+    TEST_ASSERT_EQUAL(32, IC_IROUND_UP(x, 32));
+
+    x = -1;
+    TEST_ASSERT_EQUAL(-1, IC_IROUND_UP(x, 1));
+    TEST_ASSERT_EQUAL(0, IC_IROUND_UP(x, 3));
+    TEST_ASSERT_EQUAL(0, IC_IROUND_UP(x, 4));
+    x = -32;
+    TEST_ASSERT_EQUAL(-32, IC_IROUND_UP(x, 32));
+    x = -63;
+    TEST_ASSERT_EQUAL(-32, IC_IROUND_UP(x, 32));
+
     TEST_ASSERT_EQUAL(9223372036854775807LL, IC_IROUND_UP(9223372036854775807LL, 1));
 }
 
 
 void test_IC_CEIL(void) {
+    /* compile-time */
     IC_ASSERT_CONSTANT(IC_CEIL(0.1));
 
     TEST_ASSERT_EQUAL_DOUBLE(1., IC_CEIL(0.1));
@@ -150,6 +207,10 @@ void test_IC_ROUND(void) {
     TEST_ASSERT_EQUAL(10000, IC_REQUIRE_CONSTANT((int) (IC_ROUND(10000.f))));
 }
 
+int another_val = 5;
+int another_global = IC_G_ROUND(0.49);
+
+
 void test_IC_DIV_ROUND_UP(void) {
     IC_ASSERT_CONSTANT(IC_DIV_ROUND_UP(0, 1));
 
@@ -157,6 +218,17 @@ void test_IC_DIV_ROUND_UP(void) {
     TEST_ASSERT_EQUAL(1, IC_DIV_ROUND_UP(1, 2));
     TEST_ASSERT_EQUAL(2, IC_DIV_ROUND_UP(3, 2));
     TEST_ASSERT_EQUAL(2, IC_DIV_ROUND_UP(8, 4));
+
+    int x = 0;
+    IC_ASSERT_NOT_CONSTANT(IC_DIV_ROUND_UP(x, 1));
+
+    TEST_ASSERT_EQUAL(0, IC_DIV_ROUND_UP(x, 1));
+    x = 1;
+    TEST_ASSERT_EQUAL(1, IC_DIV_ROUND_UP(x, 2));
+    x = 3;
+    TEST_ASSERT_EQUAL(2, IC_DIV_ROUND_UP(x, 2));
+    x = 8;
+    TEST_ASSERT_EQUAL(2, IC_DIV_ROUND_UP(x, 4));
 }
 
 void test_IC_DIV_ROUND_CLOSEST(void) {
@@ -187,6 +259,20 @@ void test_IC_MAX(void) {
 
     TEST_ASSERT_EQUAL_DOUBLE(1.l, IC_MAX(0.l, 1.l));
     TEST_ASSERT_EQUAL_DOUBLE(0.l, IC_MAX(0.l, -1.l));
+
+    int x = 0;
+    IC_ASSERT_NOT_CONSTANT(IC_MAX(x, 1));
+    TEST_ASSERT_EQUAL(1, IC_MAX(x, 1));
+    TEST_ASSERT_EQUAL(0, IC_MAX(x, -1));
+
+    TEST_ASSERT_EQUAL_DOUBLE(1., IC_MAX((double) x, 1.));
+    TEST_ASSERT_EQUAL_DOUBLE(0., IC_MAX((double) x, -1.));
+
+    TEST_ASSERT_EQUAL_FLOAT(1.f, IC_MAX((float) x, 1.f));
+    TEST_ASSERT_EQUAL_FLOAT(0.f, IC_MAX((float) x, -1.f));
+
+    TEST_ASSERT_EQUAL_DOUBLE(1.l, IC_MAX((double) x, 1.l));
+    TEST_ASSERT_EQUAL_DOUBLE(0.l, IC_MAX((double) x, -1.l));
 }
 
 void test_IC_MIN(void) {
@@ -237,8 +323,8 @@ void test_IC_IN_RANGE(void) {
     TEST_ASSERT_TRUE(IC_IN_RANGE(1, 0, 2));
     TEST_ASSERT_TRUE(IC_IN_RANGE(-1, -2, 2));
     TEST_ASSERT_TRUE(IC_IN_RANGE(-3, -5, -1));
-    TEST_ASSERT_TRUE(IC_IN_RANGE(0, 0, UINT64_MAX));
-    TEST_ASSERT_TRUE(IC_IN_RANGE(UINT64_MAX, 0, UINT64_MAX));
+    TEST_ASSERT_TRUE(IC_IN_RANGE(1, 0, UINT64_MAX));
+    TEST_ASSERT_TRUE(IC_IN_RANGE(UINT64_MAX, 1, UINT64_MAX));
     TEST_ASSERT_TRUE(IC_IN_RANGE(0, INT64_MIN, INT64_MAX));
     TEST_ASSERT_TRUE(IC_IN_RANGE(INT64_MIN, INT64_MIN, INT64_MAX));
     TEST_ASSERT_TRUE(IC_IN_RANGE(INT64_MAX, INT64_MIN, INT64_MAX));
@@ -266,38 +352,36 @@ void test_IC_ILOG2(void) {
     TEST_ASSERT_EQUAL(63, IC_ILOG2(IC_BIT64(63U) + 1U));
     TEST_ASSERT_EQUAL(63, IC_ILOG2(UINT64_MAX));
 
-    uint8_t const val = IC_ILOG2(42U);
+    uint8_t val = IC_ILOG2(42U);
     TEST_ASSERT_EQUAL(5, val);
-    uint8_t const val64 = IC_ILOG2(42U + IC_BIT64(32U));
+    uint64_t val64 = IC_ILOG2(42U + IC_BIT64(32U));
     TEST_ASSERT_EQUAL(32, val64);
-}
 
-void test_IC_Z_ILOG2(void) {
-    TEST_ASSERT_EQUAL(-1, IC_Z_ILOG2(0U));
+    TEST_ASSERT_EQUAL(-1, IC_ILOG2(0U));
 
-    TEST_ASSERT_EQUAL(0, IC_Z_ILOG2(1U));
-    TEST_ASSERT_EQUAL(1, IC_Z_ILOG2(2U));
-    TEST_ASSERT_EQUAL(1, IC_Z_ILOG2(3U));
+    TEST_ASSERT_EQUAL(0, IC_ILOG2(1U));
+    TEST_ASSERT_EQUAL(1, IC_ILOG2(2U));
+    TEST_ASSERT_EQUAL(1, IC_ILOG2(3U));
 
-    TEST_ASSERT_EQUAL(2, IC_Z_ILOG2(4U));
-    uint8_t val = 4;
-    TEST_ASSERT_EQUAL(2, IC_Z_ILOG2(val));
-    TEST_ASSERT_EQUAL(2, IC_Z_ILOG2(5U));
-    TEST_ASSERT_EQUAL(2, IC_Z_ILOG2(5U));
-    TEST_ASSERT_EQUAL(31, IC_Z_ILOG2(IC_BIT(31)));
-    TEST_ASSERT_EQUAL(31, IC_Z_ILOG2(IC_BIT(31) + 1));
-    TEST_ASSERT_EQUAL(31, IC_Z_ILOG2(UINT32_MAX));
-    TEST_ASSERT_EQUAL(32, IC_Z_ILOG2(IC_BIT64(32)));
-    TEST_ASSERT_EQUAL(62, IC_Z_ILOG2(IC_BIT64(63) - 1));
-    uint64_t val64 = IC_BIT64(63) - 1;
-    TEST_ASSERT_EQUAL(62, IC_Z_ILOG2(val64));
-    TEST_ASSERT_EQUAL(63, IC_Z_ILOG2(IC_BIT64(63)));
-    TEST_ASSERT_EQUAL(63, IC_Z_ILOG2(IC_BIT64(63) + 1));
-    TEST_ASSERT_EQUAL(63, IC_Z_ILOG2(UINT64_MAX));
+    TEST_ASSERT_EQUAL(2, IC_ILOG2(4U));
+    val = 4;
+    TEST_ASSERT_EQUAL(2, IC_ILOG2(val));
+    TEST_ASSERT_EQUAL(2, IC_ILOG2(5U));
+    TEST_ASSERT_EQUAL(2, IC_ILOG2(5U));
+    TEST_ASSERT_EQUAL(31, IC_ILOG2(IC_BIT(31)));
+    TEST_ASSERT_EQUAL(31, IC_ILOG2(IC_BIT(31) + 1));
+    TEST_ASSERT_EQUAL(31, IC_ILOG2(UINT32_MAX));
+    TEST_ASSERT_EQUAL(32, IC_ILOG2(IC_BIT64(32)));
+    TEST_ASSERT_EQUAL(62, IC_ILOG2(IC_BIT64(63) - 1));
+    val64 = IC_BIT64(63) - 1;
+    TEST_ASSERT_EQUAL(62, IC_ILOG2(val64));
+    TEST_ASSERT_EQUAL(63, IC_ILOG2(IC_BIT64(63)));
+    TEST_ASSERT_EQUAL(63, IC_ILOG2(IC_BIT64(63) + 1));
+    TEST_ASSERT_EQUAL(63, IC_ILOG2(UINT64_MAX));
 
-    uint8_t const res = IC_Z_ILOG2(42U);
+    uint8_t const res = IC_ILOG2(42U);
     TEST_ASSERT_EQUAL(5, res);
-    uint8_t const res64 = IC_Z_ILOG2(42U + IC_BIT64(32));
+    uint8_t const res64 = IC_ILOG2(42U + IC_BIT64(32));
     TEST_ASSERT_EQUAL(32, res64);
 }
 
@@ -321,6 +405,18 @@ void test_IC_LOG2CEIL(void) {
     TEST_ASSERT_EQUAL(64, IC_LOG2CEIL(UINT64_MAX));
 }
 
+
+void test_IC_BSWAP24(void) {
+    IC_ASSERT_CONSTANT(IC_BSWAP24(0x030201));
+
+    TEST_ASSERT_EQUAL(0x010203, IC_BSWAP24(0x030201));
+
+    int x = 0x030201;
+    IC_ASSERT_NOT_CONSTANT(IC_BSWAP24(x));
+    TEST_ASSERT_EQUAL(0x010203, IC_BSWAP24(id(x)));
+    ASSERT_CALLED(1);
+}
+
 int main(void) {
     UNITY_BEGIN();
 
@@ -336,8 +432,8 @@ int main(void) {
     RUN_TEST(test_IC_CLAMP);
     RUN_TEST(test_IC_IN_RANGE);
     RUN_TEST(test_IC_ILOG2);
-    RUN_TEST(test_IC_Z_ILOG2);
     RUN_TEST(test_IC_LOG2CEIL);
+    RUN_TEST(test_IC_BSWAP24);
 
     return UNITY_END();
 }

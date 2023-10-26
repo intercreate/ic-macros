@@ -23,13 +23,17 @@ extern "C" {
 #include "zephyr/build_assert.h"
 #include "zephyr/util.h"
 
+/**
+ * @brief Only use in global scope; absolute value.
+ * @returns The absolute value of the argument.
+ */
+#define IC_G_ABS(x) ((x) < 0 ? (-(x)) : (x))
 
 /**
  * @brief Absolute value.
- * @note Arguments are evaluated more than once.
  * @returns The absolute value of the argument.
  */
-#define IC_ABS(x) ((x) < 0 ? (-(x)) : (x))
+#define IC_ABS(x) _IC_MAKE_SINGLE_EVAL_1(IC_G_ABS, x)
 
 #define IC_ANSI_RED "\x1b[31m"
 #define IC_ANSI_GREEN "\x1b[32m"

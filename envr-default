@@ -1,0 +1,15 @@
+[PROJECT_OPTIONS]
+PROJECT_NAME=ic-macros
+
+[VARIABLES]
+TOOLCHAIN_GNU_ARM_NONE_EABI_PATH=$HOME/.local/xPacks/@xpack-dev-tools/arm-none-eabi-gcc/12.3.1-1.2.1/.content/bin
+TOOLCHAIN_GNU_ARM_NONE_EABI_PREFIX=arm-none-eabi
+
+TOOLCHAIN_GNU_ARM_ZEPHYR_EABI_PATH=$HOME/zephyr-sdk-0.16.3/arm-zephyr-eabi/bin
+TOOLCHAIN_GNU_ARM_ZEPHYR_EABI_PREFIX=arm-zephyr-eabi
+
+[ADD_TO_PATH]
+
+[ALIASES]
+test=cmake -P $ENVR_ROOT/test.cmake
+lint=cmake -P $ENVR_ROOT/lint.cmake

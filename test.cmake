@@ -3,17 +3,26 @@
 #
 # Automate CMake configure, build, and test.
 #
-# Instead of:
-#   
-#   cmake -B build -G Ninja && cmake --build build --clean-first && ctest --test-dir build/tests -V
-# 
-# Use:
+# usage:
+#   cmake -P test.cmake [toolchain]
 #
-#   cmake -P test.cmake
+# See the toolchain folder for options.  Specify without the extension, .cmake.
 #
+# example:
+#   cmake -P test.cmake arm-none-eabi-gcc
+
+if(${CMAKE_ARGC} EQUAL 3)
+    set(toolchain_arg)
+    set(build_folder build-native)
+elseif(${CMAKE_ARGC} EQUAL 4)
+    set(toolchain_arg "-DCMAKE_TOOLCHAIN_FILE=toolchain/${CMAKE_ARGV3}.cmake")
+    set(build_folder "build-${CMAKE_ARGV3}")
+else()
+    message(FATAL_ERROR "Must provide 0 or 1 arguments!")
+endif()
 
 execute_process(
-    COMMAND cmake "-Bbuild" "-GNinja"
+    COMMAND cmake "-B${build_folder}" "-GNinja" "${toolchain_arg}"
     RESULT_VARIABLE res 
     WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
 )
@@ -22,7 +31,7 @@ if(NOT ${res} STREQUAL "0")
 endif()
 
 execute_process(
-    COMMAND cmake "--build" "build" "--clean-first"
+    COMMAND cmake "--build" "${build_folder}" "--clean-first"
     RESULT_VARIABLE res
     WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
 )
@@ -30,7 +39,7 @@ if(NOT ${res} STREQUAL "0")
     message(FATAL_ERROR "CMake build step failed.")
 endif()
 
-execute_process(COMMAND ctest "-V" "--test-dir" "build/tests" "--output-on-failure"
+execute_process(COMMAND ctest "-V" "--test-dir" "${build_folder}/tests" "--output-on-failure"
     RESULT_VARIABLE res
     WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
 )

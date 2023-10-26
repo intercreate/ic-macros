@@ -54,8 +54,7 @@ extern "C" {
      || __builtin_types_compatible_p(uint32_t, __typeof__(expr)) \
      || __builtin_types_compatible_p(unsigned long int, __typeof__(expr)) \
      || __builtin_types_compatible_p(uint64_t, __typeof__(expr)) \
-     || __builtin_types_compatible_p(unsigned long long int, __typeof__(expr)) \
-     || __builtin_types_compatible_p(__uint128_t, __typeof__(expr)))
+     || __builtin_types_compatible_p(unsigned long long int, __typeof__(expr)))
 
 /**
  * @brief Compile-time constant check if expr is an unsigned integer.
@@ -104,8 +103,7 @@ extern "C" {
      || __builtin_types_compatible_p(int32_t, __typeof__(expr)) \
      || __builtin_types_compatible_p(signed long int, __typeof__(expr)) \
      || __builtin_types_compatible_p(int64_t, __typeof__(expr)) \
-     || __builtin_types_compatible_p(signed long long int, __typeof__(expr)) \
-     || __builtin_types_compatible_p(__int128_t, __typeof__(expr)))
+     || __builtin_types_compatible_p(signed long long int, __typeof__(expr)))
 
 /**
  * @brief Compile-time check if expr is a signed integer.
