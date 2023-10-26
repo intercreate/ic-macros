@@ -12,13 +12,18 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Install Ninja
+        run: sudo apt install ninja-build
+
+      - name: Test native
+        run: cmake -P test.cmake
+
       - name: apt update
         run: sudo apt update
 
-      - name: Install Packages
+      - name: Install Cross Platform Packages
         run: >
-          sudo apt install ninja-build
-          qemu-user qemu-user-static gcc-aarch64-linux-gnu
+          sudo apt install qemu-user qemu-user-static gcc-aarch64-linux-gnu
           g++-aarch64-linux-gnu binutils-aarch64-linux-gnu
       
       - name: Install xPack XPM
@@ -37,11 +42,10 @@ jobs:
           cd zephyr-sdk-0.16.3
           ./setup.sh -t arm-zephyr-eabi
       
-      - name: Test native
-        run: cmake -P test.cmake
-      
       - name: Test arm-none-eabi-gcc
-        run: cmake -P test.cmake arm-none-eabi-gcc
+        run: |
+          . ./envr.ps1
+          cmake -P test.cmake arm-none-eabi-gcc
       
       - name: Test arm-zephyr-eabi-gcc
         run: cmake -P test.cmake arm-zephyr-eabi-gcc
