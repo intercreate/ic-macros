@@ -22,5 +22,5 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: build/ic_macro.zip
+          file: build/ic_macros.zip
           tag: ${{ github.ref }}
