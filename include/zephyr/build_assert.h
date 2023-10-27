@@ -51,7 +51,10 @@ extern "C" {
  * @param expr An expression that is a compile-time constant.
  * @param msg Optional string to describe the assertion should it fail.
  */
-#    define IC_BUILD_ASSERT(expr, msg...) (void) 0
+#    define IC_BUILD_ASSERT(expr, msg...) \
+        _Static_assert( \
+            expr, "" msg " See " __FILE__ ":" _IC_Z_STR(__LINE__) ", expr: " _IC_Z_STR(expr) \
+        )
 #endif /* defined(__cplusplus) && (__cplusplus >= 201103L) */
 
 #ifdef __cplusplus
