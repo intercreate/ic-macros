@@ -2,6 +2,20 @@
 
 This header-only macro library provides common GCC utility macros.
 
+# Include in Your Project
+
+* Add the fetch file to your repo: `wget https://github.com/intercreate/ic-macros/releases/latest/download/fetch_ic_macros.cmake`
+* Include and link in your CMakeLists.txt:
+  ```cmake
+  include(fetch_ic_macros.cmake)
+  #...
+  target_link_libraries(my_cmake_project PRIVATE ic_macros)
+  ```
+* Include in your source code: 
+  ```c
+  #include <ic_macros.h>
+  ```
+
 # Contributions
 
 * Fork this repository: https://github.com/intercreate/ic-macros/fork
