@@ -24,3 +24,10 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: build/ic_macros.zip
           tag: ${{ github.ref }}
+      
+      - name: Add fetch to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: fetch_ic_macros.cmake
+          tag: ${{ github.ref }}
