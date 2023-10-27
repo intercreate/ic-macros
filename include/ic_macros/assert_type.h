@@ -52,6 +52,7 @@ extern "C" {
      || __builtin_types_compatible_p(uint16_t, __typeof__(expr)) \
      || __builtin_types_compatible_p(unsigned short int, __typeof__(expr)) \
      || __builtin_types_compatible_p(uint32_t, __typeof__(expr)) \
+     || __builtin_types_compatible_p(unsigned int, __typeof__(expr)) \
      || __builtin_types_compatible_p(unsigned long int, __typeof__(expr)) \
      || __builtin_types_compatible_p(uint64_t, __typeof__(expr)) \
      || __builtin_types_compatible_p(unsigned long long int, __typeof__(expr)))
@@ -78,7 +79,7 @@ extern "C" {
 #define IC_Z_REQUIRE_UINT(expr) \
     ({ \
         __auto_type const _ic_z_is_uint_expr_ = (expr); \
-        IC_BUILD_ASSERT(_IC_IS_UINT(_ic_z_is_uint_expr_)); \
+        IC_BUILD_ASSERT(_IC_IS_UINT(expr)); \
         _ic_z_is_uint_expr_; \
     })
 
@@ -101,6 +102,7 @@ extern "C" {
      || __builtin_types_compatible_p(int16_t, __typeof__(expr)) \
      || __builtin_types_compatible_p(signed short int, __typeof__(expr)) \
      || __builtin_types_compatible_p(int32_t, __typeof__(expr)) \
+     || __builtin_types_compatible_p(int, __typeof__(expr)) \
      || __builtin_types_compatible_p(signed long int, __typeof__(expr)) \
      || __builtin_types_compatible_p(int64_t, __typeof__(expr)) \
      || __builtin_types_compatible_p(signed long long int, __typeof__(expr)))
