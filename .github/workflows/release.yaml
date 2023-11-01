@@ -31,3 +31,31 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: fetch_ic_macros.cmake
           tag: ${{ github.ref }}
+
+  doxygen-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup GIT
+        run: |
+          git config --global user.name "Intercreate"
+          git config --global user.email ic@n0t4d0m41n.1337
+          git fetch --prune --unshallow --tags
+
+      - name: Install Doxygen Packages
+        run: sudo apt install doxygen graphviz
+
+      - name: Install Awesome Doxygen CSS
+        working-directory: docs
+        run: npm install https://github.com/jothepro/doxygen-awesome-css#v2.2.1 --save-dev
+
+      - name: Build the docs
+        working-directory: docs
+        run: GIT_TAG=$(git describe --tags) doxygen
+
+      - name: Publish
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: docs/build-docs/html
