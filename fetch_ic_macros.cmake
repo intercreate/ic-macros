@@ -6,7 +6,7 @@
 include_guard(GLOBAL)
 
 if(${CMAKE_VERSION} VERSION_GREATER_EQUAL "3.24.0")
-    set(download_extract_timestamp "DOWNLOAD_EXTRACT_TIMESTAMP true")
+    set(download_extract_timestamp DOWNLOAD_EXTRACT_TIMESTAMP true)
 endif()
 
 include(FetchContent)
