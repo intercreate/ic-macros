@@ -27,7 +27,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ic-macros
-   &#160;<span id="projectnumber">0.1.4</span>
+   &#160;<span id="projectnumber">0.1.5</span>
    </div>
   </td>
  </tr>
@@ -158,7 +158,7 @@ Macros</h2></td></tr>
 <tr class="memitem:ae2de23c8a032bd1a92831bdce778da4c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#ae2de23c8a032bd1a92831bdce778da4c">IC_ARRAY_LENGTH</a>(array)&#160;&#160;&#160;        (unsigned int) (_IC_IS_ARRAY(array) + (sizeof(array) / sizeof((array)[0])))</td></tr>
 <tr class="memdesc:ae2de23c8a032bd1a92831bdce778da4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of elements in the given <code>array</code>; the "length".  <a href="util_8h.html#ae2de23c8a032bd1a92831bdce778da4c">More...</a><br /></td></tr>
 <tr class="separator:ae2de23c8a032bd1a92831bdce778da4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab510cc46625940d36acb714c44498e59"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#ab510cc46625940d36acb714c44498e59">IC_ARRAY_SIZE</a>(array)&#160;&#160;&#160;        (size_t)(_IC_IS_ARRAY(array) + (sizeof(array) / sizeof((array)[0])))</td></tr>
+<tr class="memitem:ab510cc46625940d36acb714c44498e59"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#ab510cc46625940d36acb714c44498e59">IC_ARRAY_SIZE</a>(array)&#160;&#160;&#160;(size_t)(_IC_IS_ARRAY(array) + sizeof(array))</td></tr>
 <tr class="memdesc:ab510cc46625940d36acb714c44498e59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size of the given <code>array</code> in 8-bit bytes.  <a href="util_8h.html#ab510cc46625940d36acb714c44498e59">More...</a><br /></td></tr>
 <tr class="separator:ab510cc46625940d36acb714c44498e59"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ffabd2a4d81308124fcd0a2129f8a6a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a2ffabd2a4d81308124fcd0a2129f8a6a">IC_IS_ARRAY_ELEMENT</a>(array,  ptr)</td></tr>
@@ -357,7 +357,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>-1 on error, or the array index of <code>ptr</code> within <code>array</code>, on success </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00179">179</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00178">178</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -388,7 +388,7 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">    <a class="code" href="util_8h.html#a29db4ff1f3f1bd2330bf08cb7eb9c1a7">IC_PART_OF_ARRAY</a>(array, ptr) \</div>
 <div class="line">    ? (<a class="code" href="util_8h.html#a692c2ebd5a9b32b37c6f6fc57f2fa360">IC_POINTER_TO_UINT</a>(ptr) - <a class="code" href="util_8h.html#a692c2ebd5a9b32b37c6f6fc57f2fa360">IC_POINTER_TO_UINT</a>(array)) / <span class="keyword">sizeof</span>((array)[0]) : -1</div>
-<div class="ttc" id="autil_8h_html_a29db4ff1f3f1bd2330bf08cb7eb9c1a7"><div class="ttname"><a href="util_8h.html#a29db4ff1f3f1bd2330bf08cb7eb9c1a7">IC_PART_OF_ARRAY</a></div><div class="ttdeci">#define IC_PART_OF_ARRAY(array, ptr)</div><div class="ttdoc">Check if a pointer ptr lies within array.</div><div class="ttdef"><b>Definition:</b> <a href="util_8h_source.html#l00192">util.h:192</a></div></div>
+<div class="ttc" id="autil_8h_html_a29db4ff1f3f1bd2330bf08cb7eb9c1a7"><div class="ttname"><a href="util_8h.html#a29db4ff1f3f1bd2330bf08cb7eb9c1a7">IC_PART_OF_ARRAY</a></div><div class="ttdeci">#define IC_PART_OF_ARRAY(array, ptr)</div><div class="ttdoc">Check if a pointer ptr lies within array.</div><div class="ttdef"><b>Definition:</b> <a href="util_8h_source.html#l00191">util.h:191</a></div></div>
 <div class="ttc" id="autil_8h_html_a692c2ebd5a9b32b37c6f6fc57f2fa360"><div class="ttname"><a href="util_8h.html#a692c2ebd5a9b32b37c6f6fc57f2fa360">IC_POINTER_TO_UINT</a></div><div class="ttdeci">#define IC_POINTER_TO_UINT(x)</div><div class="ttdoc">Cast x, a pointer, to an unsigned integer.</div><div class="ttdef"><b>Definition:</b> <a href="util_8h_source.html#l00055">util.h:55</a></div></div>
 </div><!-- fragment -->
 <p>Array-index of <code>ptr</code> within <code>array</code>, rounded down. </p>
@@ -404,7 +404,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>-1 on error, or the array index of <code>ptr</code> within <code>array</code>, on success </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00213">213</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00212">212</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -449,7 +449,7 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">array</td><td>)</td>
-          <td>&#160;&#160;&#160;        (size_t)(_IC_IS_ARRAY(array) + (sizeof(array) / sizeof((array)[0])))</td>
+          <td>&#160;&#160;&#160;(size_t)(_IC_IS_ARRAY(array) + sizeof(array))</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -486,7 +486,7 @@ Macros</h2></td></tr>
 
 <p>Unsigned integer with bit position <code>n</code> set. </p>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00665">665</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00664">664</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -508,7 +508,7 @@ Macros</h2></td></tr>
 
 <p>64-bit unsigned integer with bit position <code>n</code> set. </p>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00668">668</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00667">667</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -530,7 +530,7 @@ Macros</h2></td></tr>
 
 <p>64-bit bit mask with bits 0 through n-1 (inclusive) set, or 0 if <code>n</code> is 0. </p>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00702">702</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00701">701</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -552,7 +552,7 @@ Macros</h2></td></tr>
 
 <p>Bit mask with bits 0 through n-1 (inclusive) set, or 0 if <code>n</code> is 0. </p>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00696">696</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00695">695</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -580,7 +580,7 @@ Macros</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00751">751</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00750">750</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -607,7 +607,7 @@ Macros</h2></td></tr>
 <div class="line">        <span class="comment">/* use &lt;tgmath.h&gt; */</span> \</div>
 <div class="line">        IC_REQUIRE_CONSTANT(ceil(x)); \</div>
 <div class="line">    })</div>
-<div class="ttc" id="autil_8h_html_a579131cb083db03c9ca0929edcfa3fc1"><div class="ttname"><a href="util_8h.html#a579131cb083db03c9ca0929edcfa3fc1">IC_SAME_TYPE</a></div><div class="ttdeci">#define IC_SAME_TYPE(a, b)</div><div class="ttdoc">Validate if two entities have a compatible type.</div><div class="ttdef"><b>Definition:</b> <a href="util_8h_source.html#l00224">util.h:224</a></div></div>
+<div class="ttc" id="autil_8h_html_a579131cb083db03c9ca0929edcfa3fc1"><div class="ttname"><a href="util_8h.html#a579131cb083db03c9ca0929edcfa3fc1">IC_SAME_TYPE</a></div><div class="ttdeci">#define IC_SAME_TYPE(a, b)</div><div class="ttdoc">Validate if two entities have a compatible type.</div><div class="ttdef"><b>Definition:</b> <a href="util_8h_source.html#l00223">util.h:223</a></div></div>
 </div><!-- fragment -->
 <p>Compile-time floating point ceiling of f32 (float), f64 (double), &amp; f128 (long double). </p>
 <p>Useful for casting to an integer: #define ROUNDED_UP <a class="el" href="util_8h.html#a22dff5e53f6a129e58f07e9ed02de6f3" title="Compile-time floating point ceiling of f32 (float), f64 (double), &amp; f128 (long double).">IC_CEIL(MY_FLOATING_POINT_NUMBER)</a> </p><dl class="section note"><dt>Note</dt><dd>Generates compile error if x is not a compile-time constant; use ceil(x) from &lt;tgmath.h&gt;. </dd></dl>
@@ -619,7 +619,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the output of ceil(x); same type as the argument </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00326">326</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00325">325</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -667,7 +667,7 @@ Macros</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>Clamped value.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Expressions are only evaluated once. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00537">537</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00536">536</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -723,7 +723,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a pointer to the structure that contains <code>ptr</code> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00260">260</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00259">259</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -757,7 +757,7 @@ Macros</h2></td></tr>
 <p>Example: </p><div class="fragment"><div class="line"><a class="code" href="util_8h.html#aef094a0f5ad1ffda2babcd4ccb36dcf3">IC_DIV_ROUND_CLOSEST</a>(5, 2); <span class="comment">// 3</span></div>
 <div class="line"><a class="code" href="util_8h.html#aef094a0f5ad1ffda2babcd4ccb36dcf3">IC_DIV_ROUND_CLOSEST</a>(5, -2); <span class="comment">// -3</span></div>
 <div class="line"><a class="code" href="util_8h.html#aef094a0f5ad1ffda2babcd4ccb36dcf3">IC_DIV_ROUND_CLOSEST</a>(5, 3); <span class="comment">// 2</span></div>
-<div class="ttc" id="autil_8h_html_aef094a0f5ad1ffda2babcd4ccb36dcf3"><div class="ttname"><a href="util_8h.html#aef094a0f5ad1ffda2babcd4ccb36dcf3">IC_DIV_ROUND_CLOSEST</a></div><div class="ttdeci">#define IC_DIV_ROUND_CLOSEST(n, d)</div><div class="ttdoc">Divide and round to the nearest integer.</div><div class="ttdef"><b>Definition:</b> <a href="util_8h_source.html#l00468">util.h:468</a></div></div>
+<div class="ttc" id="autil_8h_html_aef094a0f5ad1ffda2babcd4ccb36dcf3"><div class="ttname"><a href="util_8h.html#aef094a0f5ad1ffda2babcd4ccb36dcf3">IC_DIV_ROUND_CLOSEST</a></div><div class="ttdeci">#define IC_DIV_ROUND_CLOSEST(n, d)</div><div class="ttdoc">Divide and round to the nearest integer.</div><div class="ttdef"><b>Definition:</b> <a href="util_8h_source.html#l00467">util.h:467</a></div></div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">n</td><td>Numerator. </td></tr>
@@ -768,7 +768,7 @@ Macros</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>The result of <code>n</code> / <code>d</code>, rounded to the nearest integer.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Expressions are only evaluated once. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00468">468</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00467">467</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -801,7 +801,7 @@ Macros</h2></td></tr>
 <p>Divide and round up. </p>
 <p>Example: </p><div class="fragment"><div class="line"><a class="code" href="util_8h.html#a06b0c75388373bae5374d7b142bfbe71">IC_DIV_ROUND_UP</a>(1, 2); <span class="comment">// 1</span></div>
 <div class="line"><a class="code" href="util_8h.html#a06b0c75388373bae5374d7b142bfbe71">IC_DIV_ROUND_UP</a>(3, 2); <span class="comment">// 2</span></div>
-<div class="ttc" id="autil_8h_html_a06b0c75388373bae5374d7b142bfbe71"><div class="ttname"><a href="util_8h.html#a06b0c75388373bae5374d7b142bfbe71">IC_DIV_ROUND_UP</a></div><div class="ttdeci">#define IC_DIV_ROUND_UP(n, d)</div><div class="ttdoc">Divide and round up.</div><div class="ttdef"><b>Definition:</b> <a href="util_8h_source.html#l00431">util.h:431</a></div></div>
+<div class="ttc" id="autil_8h_html_a06b0c75388373bae5374d7b142bfbe71"><div class="ttname"><a href="util_8h.html#a06b0c75388373bae5374d7b142bfbe71">IC_DIV_ROUND_UP</a></div><div class="ttdeci">#define IC_DIV_ROUND_UP(n, d)</div><div class="ttdoc">Divide and round up.</div><div class="ttdef"><b>Definition:</b> <a href="util_8h_source.html#l00430">util.h:430</a></div></div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">n</td><td>Numerator. </td></tr>
@@ -812,7 +812,7 @@ Macros</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>The result of <code>n</code> / <code>d</code>, rounded up.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Expressions are only evaluated once. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00431">431</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00430">430</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -914,7 +914,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the output of floor(x); same type as the argument </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00357">357</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00356">356</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -942,7 +942,7 @@ Macros</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00743">743</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00742">742</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -971,7 +971,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the output of ceil(x); same type as the argument </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00314">314</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00313">313</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -1018,7 +1018,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Clamped value. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00524">524</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00523">523</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -1061,7 +1061,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The result of <code>n</code> / <code>d</code>, rounded to the nearest integer. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00448">448</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00447">447</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -1103,7 +1103,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The result of <code>n</code> / <code>d</code>, rounded up. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00413">413</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00412">412</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -1197,7 +1197,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the output of floor(x); same type as the argument </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00346">346</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00345">345</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -1226,7 +1226,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>log2(x) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00573">573</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00572">572</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -1279,7 +1279,7 @@ Macros</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00549">549</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00548">548</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -1318,7 +1318,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the rounded integer </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00289">289</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00288">288</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -1359,7 +1359,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the rounded integer </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00272">272</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00271">271</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -1387,7 +1387,7 @@ Macros</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00729">729</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00728">728</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -1416,7 +1416,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if x is a power of 2, false otherwise </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00654">654</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00653">653</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -1456,7 +1456,7 @@ Macros</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00712">712</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00711">711</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -1485,7 +1485,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>ceil(log2(x)) when 1 &lt;= x &lt;= max(type(x)), 0 when x &lt; 1 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00596">596</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00595">595</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -1547,7 +1547,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Maximum value of <code>a</code> and <code>b</code>. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00478">478</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00477">477</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -1587,7 +1587,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Minimum value of <code>a</code> and <code>b</code>. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00501">501</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00500">500</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -1617,7 +1617,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>2^ceil(log2(x)) or 0 if 2^ceil(log2(x)) would saturate 64-bits </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00616">616</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00615">615</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -1646,7 +1646,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>X rounded up to the next power of two </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00638">638</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00637">637</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -1676,7 +1676,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The rounded number </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00376">376</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00375">375</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -1723,7 +1723,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The value of var with the specified bit set or cleared </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00679">679</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00678">678</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -1811,7 +1811,7 @@ Macros</h2></td></tr>
 <div class="line">        _ic_z_ilog2_x_ &lt; 1 ? -1 : <a class="code" href="util_8h.html#aebc4a73d68b614949038318302ee34dc">IC_G_ILOG2</a>(_ic_z_ilog2_x_); \</div>
 <div class="line">    })</div>
 <div class="ttc" id="aassert__type_8h_html_a25350f56f643b6180805713e7e50d332"><div class="ttname"><a href="assert__type_8h.html#a25350f56f643b6180805713e7e50d332">IC_Z_REQUIRE_UINT</a></div><div class="ttdeci">#define IC_Z_REQUIRE_UINT(expr)</div><div class="ttdoc">Compile-time require expr is an unsigned integer.</div><div class="ttdef"><b>Definition:</b> <a href="assert__type_8h_source.html#l00079">assert_type.h:79</a></div></div>
-<div class="ttc" id="autil_8h_html_aebc4a73d68b614949038318302ee34dc"><div class="ttname"><a href="util_8h.html#aebc4a73d68b614949038318302ee34dc">IC_G_ILOG2</a></div><div class="ttdeci">#define IC_G_ILOG2(x)</div><div class="ttdoc">Only use in global scope; compute integer value of log2(x)</div><div class="ttdef"><b>Definition:</b> <a href="util_8h_source.html#l00573">util.h:573</a></div></div>
+<div class="ttc" id="autil_8h_html_aebc4a73d68b614949038318302ee34dc"><div class="ttname"><a href="util_8h.html#aebc4a73d68b614949038318302ee34dc">IC_G_ILOG2</a></div><div class="ttdeci">#define IC_G_ILOG2(x)</div><div class="ttdoc">Only use in global scope; compute integer value of log2(x)</div><div class="ttdef"><b>Definition:</b> <a href="util_8h_source.html#l00572">util.h:572</a></div></div>
 </div><!-- fragment -->
 <p>Compute integer value log2(x) </p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -1822,7 +1822,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>log2(x) or -1 if x &lt; 1 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00583">583</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00582">582</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -1876,7 +1876,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>Expressions are only evaluated once. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00564">564</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00563">563</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -1937,7 +1937,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the rounded integer </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00297">297</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00296">296</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -1976,7 +1976,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the rounded integer </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00281">281</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00280">280</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -2022,7 +2022,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 if <code>ptr</code> is part of <code>array</code>, 0 otherwise </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00160">160</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00159">159</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -2050,7 +2050,7 @@ Macros</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00736">736</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00735">735</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -2079,7 +2079,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if x is a power of 2, false otherwise </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00662">662</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00661">661</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -2119,7 +2119,7 @@ Macros</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00722">722</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00721">721</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -2148,7 +2148,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>ceil(log2(x)) when 1 &lt;= x &lt;= max(type(x)), 0 when x &lt; 1 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00605">605</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00604">604</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -2211,7 +2211,7 @@ Macros</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>Maximum value of <code>a</code> and <code>b</code>.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Expressions are only evaluated once. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00490">490</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00489">489</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -2252,7 +2252,7 @@ Macros</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>Minimum value of <code>a</code> and <code>b</code>.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Expressions are only evaluated once. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00513">513</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00512">512</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -2283,7 +2283,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>2^ceil(log2(x)) or 0 if 2^ceil(log2(x)) would saturate 64-bits </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00630">630</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00629">629</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -2348,7 +2348,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 if <code>ptr</code> is part of <code>array</code>, 0 otherwise </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00192">192</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00191">191</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -2421,7 +2421,7 @@ Macros</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>X rounded up to the next power of two </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00646">646</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00645">645</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -2448,7 +2448,7 @@ Macros</h2></td></tr>
 <div class="line">        IC_BUILD_ASSERT((x) &gt;= INT64_MIN || (x) &lt;= INT64_MAX); \</div>
 <div class="line">        IC_REQUIRE_CONSTANT(<a class="code" href="util_8h.html#a172e0f2f80060c4a04032f1acc568962">IC_G_ROUND</a>(x)); \</div>
 <div class="line">    })</div>
-<div class="ttc" id="autil_8h_html_a172e0f2f80060c4a04032f1acc568962"><div class="ttname"><a href="util_8h.html#a172e0f2f80060c4a04032f1acc568962">IC_G_ROUND</a></div><div class="ttdeci">#define IC_G_ROUND(x)</div><div class="ttdoc">Only use in global scope; round of f32 (float), f64 (double), &amp; f128 (long double).</div><div class="ttdef"><b>Definition:</b> <a href="util_8h_source.html#l00376">util.h:376</a></div></div>
+<div class="ttc" id="autil_8h_html_a172e0f2f80060c4a04032f1acc568962"><div class="ttname"><a href="util_8h.html#a172e0f2f80060c4a04032f1acc568962">IC_G_ROUND</a></div><div class="ttdeci">#define IC_G_ROUND(x)</div><div class="ttdoc">Only use in global scope; round of f32 (float), f64 (double), &amp; f128 (long double).</div><div class="ttdef"><b>Definition:</b> <a href="util_8h_source.html#l00375">util.h:375</a></div></div>
 </div><!-- fragment -->
 <p>Round of f32 (float), f64 (double), &amp; f128 (long double). </p>
 <p>Useful for casting to an integer: #define ROUNDED (uint32_t) <a class="el" href="util_8h.html#a628fcf8faed913d7fc2633cc80d9ce91" title="Round of f32 (float), f64 (double), &amp; f128 (long double).">IC_ROUND(MY_FLOATING_POINT_NUMBER)</a> </p><dl class="section note"><dt>Note</dt><dd>Generates compile error if x is not a compile-time constant; use round*(x) from &lt;math.h&gt; or &lt;tgmath.h&gt; </dd>
@@ -2462,7 +2462,7 @@ Tie-breaks .5 (1/2) AWAY FROM ZERO for positive and negative numbers, e.g. 0.5 -
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The rounded number </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00389">389</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00388">388</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -2502,7 +2502,7 @@ Tie-breaks .5 (1/2) AWAY FROM ZERO for positive and negative numbers, e.g. 0.5 -
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 if the two elements are compatible, 0 if they are not </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00224">224</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00223">223</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -2546,7 +2546,7 @@ Tie-breaks .5 (1/2) AWAY FROM ZERO for positive and negative numbers, e.g. 0.5 -
 
 <p>Value of <code>x</code> rounded down to the previous word boundary. </p>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00303">303</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00302">302</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -2568,7 +2568,7 @@ Tie-breaks .5 (1/2) AWAY FROM ZERO for positive and negative numbers, e.g. 0.5 -
 
 <p>Value of <code>x</code> rounded up to the next word boundary. </p>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00300">300</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00299">299</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>
@@ -2615,7 +2615,7 @@ Tie-breaks .5 (1/2) AWAY FROM ZERO for positive and negative numbers, e.g. 0.5 -
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The value of var with the specified bit set or cleared </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00690">690</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="util_8h_source.html#l00689">689</a> of file <a class="el" href="util_8h_source.html">util.h</a>.</p>
 
 </div>
 </div>

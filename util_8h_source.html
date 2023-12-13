@@ -27,7 +27,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">ic-macros
-   &#160;<span id="projectnumber">0.1.4</span>
+   &#160;<span id="projectnumber">0.1.5</span>
    </div>
   </td>
  </tr>
@@ -169,177 +169,176 @@ $(document).ready(function(){initNavTree('util_8h_source.html',''); initResizabl
 <div class="line"><a name="l00130"></a><span class="lineno"><a class="line" href="util_8h.html#ae2de23c8a032bd1a92831bdce778da4c">  130</a></span>&#160;<span class="preprocessor">#    define IC_ARRAY_LENGTH(array) \</span></div>
 <div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="preprocessor">        (unsigned int) (_IC_IS_ARRAY(array) + (sizeof(array) / sizeof((array)[0])))</span></div>
 <div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; </div>
-<div class="line"><a name="l00141"></a><span class="lineno"><a class="line" href="util_8h.html#ab510cc46625940d36acb714c44498e59">  141</a></span>&#160;<span class="preprocessor">#    define IC_ARRAY_SIZE(array) \</span></div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="preprocessor">        (size_t)(_IC_IS_ARRAY(array) + (sizeof(array) / sizeof((array)[0])))</span></div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160; </div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* not __cplusplus */</span><span class="preprocessor"></span></div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160; </div>
-<div class="line"><a name="l00160"></a><span class="lineno"><a class="line" href="util_8h.html#a2ffabd2a4d81308124fcd0a2129f8a6a">  160</a></span>&#160;<span class="preprocessor">#define IC_IS_ARRAY_ELEMENT(array, ptr) \</span></div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;<span class="preprocessor">    ((ptr) &amp;&amp; IC_POINTER_TO_UINT(array) &lt;= IC_POINTER_TO_UINT(ptr) \</span></div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;<span class="preprocessor">     &amp;&amp; IC_POINTER_TO_UINT(ptr) &lt; IC_POINTER_TO_UINT(&amp;(array)[IC_ARRAY_LENGTH(array)]) \</span></div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<span class="preprocessor">     &amp;&amp; (IC_POINTER_TO_UINT(ptr) - IC_POINTER_TO_UINT(array)) % sizeof((array)[0]) == 0)</span></div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160; </div>
-<div class="line"><a name="l00179"></a><span class="lineno"><a class="line" href="util_8h.html#a082a4b20b9e2b1ac012644b041acf138">  179</a></span>&#160;<span class="preprocessor">#define IC_ARRAY_INDEX(array, ptr) \</span></div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;<span class="preprocessor">    IC_IS_ARRAY_ELEMENT(array, ptr) ? (__typeof__((array)[0]) *) (ptr) - (array) : -1</span></div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160; </div>
-<div class="line"><a name="l00192"></a><span class="lineno"><a class="line" href="util_8h.html#a29db4ff1f3f1bd2330bf08cb7eb9c1a7">  192</a></span>&#160;<span class="preprocessor">#define IC_PART_OF_ARRAY(array, ptr) \</span></div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;<span class="preprocessor">    ((ptr) &amp;&amp; IC_POINTER_TO_UINT(array) &lt;= IC_POINTER_TO_UINT(ptr) \</span></div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;<span class="preprocessor">     &amp;&amp; IC_POINTER_TO_UINT(ptr) &lt; IC_POINTER_TO_UINT(&amp;(array)[IC_ARRAY_LENGTH(array)]))</span></div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160; </div>
-<div class="line"><a name="l00213"></a><span class="lineno"><a class="line" href="util_8h.html#a750457f9a5ccec6d9adab9492f24756f">  213</a></span>&#160;<span class="preprocessor">#define IC_ARRAY_INDEX_FLOOR(array, ptr) \</span></div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;<span class="preprocessor">    IC_PART_OF_ARRAY(array, ptr) \</span></div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;<span class="preprocessor">    ? (IC_POINTER_TO_UINT(ptr) - IC_POINTER_TO_UINT(array)) / sizeof((array)[0]) : -1</span></div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160; </div>
-<div class="line"><a name="l00224"></a><span class="lineno"><a class="line" href="util_8h.html#a579131cb083db03c9ca0929edcfa3fc1">  224</a></span>&#160;<span class="preprocessor">#define IC_SAME_TYPE(a, b) __builtin_types_compatible_p(__typeof__(a), __typeof__(b))</span></div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160; </div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;<span class="preprocessor">#ifndef __cplusplus</span></div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;<span class="preprocessor">#    define _IC_CONTAINER_OF_VALIDATE(ptr, type, field) \</span></div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;<span class="preprocessor">        IC_BUILD_ASSERT( \</span></div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;<span class="preprocessor">            IC_SAME_TYPE(*(ptr), ((type *) 0)-&gt;field) || IC_SAME_TYPE(*(ptr), void), \</span></div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;<span class="preprocessor">            &quot;pointer type mismatch in IC_CONTAINER_OF&quot;</span> \</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;        );</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;<span class="preprocessor">#    define _IC_CONTAINER_OF_VALIDATE(ptr, type, field)</span></div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160; </div>
-<div class="line"><a name="l00260"></a><span class="lineno"><a class="line" href="util_8h.html#a8c65c91af19268b49ad11ca0aaa402d9">  260</a></span>&#160;<span class="preprocessor">#define IC_CONTAINER_OF(ptr, type, field) \</span></div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;<span class="preprocessor">    ({ \</span></div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;<span class="preprocessor">        _IC_CONTAINER_OF_VALIDATE(ptr, type, field) \</span></div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;<span class="preprocessor">        ((type *) (((char *) (ptr)) - offsetof(type, field))); \</span></div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;<span class="preprocessor">    })</span></div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160; </div>
-<div class="line"><a name="l00272"></a><span class="lineno"><a class="line" href="util_8h.html#a4711ce0eb8f7112cf64b529db38af8a7">  272</a></span>&#160;<span class="preprocessor">#define IC_G_IROUND_UP(x, align) \</span></div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;<span class="preprocessor">    ((((unsigned long) (x) + ((unsigned long) (align) -1)) / (unsigned long) (align)) \</span></div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;<span class="preprocessor">     * (unsigned long) (align))</span></div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160; </div>
-<div class="line"><a name="l00281"></a><span class="lineno"><a class="line" href="util_8h.html#aa7be5ceb52136627b0e7885fc1008fdc">  281</a></span>&#160;<span class="preprocessor">#define IC_IROUND_UP(x, align) _IC_MAKE_SINGLE_EVAL_2(IC_G_IROUND_UP, x, align)</span></div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160; </div>
-<div class="line"><a name="l00289"></a><span class="lineno"><a class="line" href="util_8h.html#a7bdb35cd086b555cf8c7081ad3f20cdb">  289</a></span>&#160;<span class="preprocessor">#define IC_G_IROUND_DOWN(x, align) \</span></div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;<span class="preprocessor">    (((unsigned long) (x) / (unsigned long) (align)) * (unsigned long) (align));</span></div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160; </div>
-<div class="line"><a name="l00297"></a><span class="lineno"><a class="line" href="util_8h.html#a7273ac0c4e8173435f0680e5bb6e7d44">  297</a></span>&#160;<span class="preprocessor">#define IC_IROUND_DOWN(x, align) _IC_MAKE_SINGLE_EVAL_2(IC_IROUND_DOWN, x, align)</span></div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160; </div>
-<div class="line"><a name="l00300"></a><span class="lineno"><a class="line" href="util_8h.html#a5978952c60c61494687de9e008a44b94">  300</a></span>&#160;<span class="preprocessor">#define IC_WB_UP(x) IC_IROUND_UP(x, sizeof(void *))</span></div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160; </div>
-<div class="line"><a name="l00303"></a><span class="lineno"><a class="line" href="util_8h.html#aaf3a9dcb6cca6f3fcb1e398304c03748">  303</a></span>&#160;<span class="preprocessor">#define IC_WB_DN(x) IC_IROUND_DOWN(x, sizeof(void *))</span></div>
+<div class="line"><a name="l00141"></a><span class="lineno"><a class="line" href="util_8h.html#ab510cc46625940d36acb714c44498e59">  141</a></span>&#160;<span class="preprocessor">#    define IC_ARRAY_SIZE(array) (size_t)(_IC_IS_ARRAY(array) + sizeof(array))</span></div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160; </div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* not __cplusplus */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160; </div>
+<div class="line"><a name="l00159"></a><span class="lineno"><a class="line" href="util_8h.html#a2ffabd2a4d81308124fcd0a2129f8a6a">  159</a></span>&#160;<span class="preprocessor">#define IC_IS_ARRAY_ELEMENT(array, ptr) \</span></div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="preprocessor">    ((ptr) &amp;&amp; IC_POINTER_TO_UINT(array) &lt;= IC_POINTER_TO_UINT(ptr) \</span></div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;<span class="preprocessor">     &amp;&amp; IC_POINTER_TO_UINT(ptr) &lt; IC_POINTER_TO_UINT(&amp;(array)[IC_ARRAY_LENGTH(array)]) \</span></div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;<span class="preprocessor">     &amp;&amp; (IC_POINTER_TO_UINT(ptr) - IC_POINTER_TO_UINT(array)) % sizeof((array)[0]) == 0)</span></div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160; </div>
+<div class="line"><a name="l00178"></a><span class="lineno"><a class="line" href="util_8h.html#a082a4b20b9e2b1ac012644b041acf138">  178</a></span>&#160;<span class="preprocessor">#define IC_ARRAY_INDEX(array, ptr) \</span></div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="preprocessor">    IC_IS_ARRAY_ELEMENT(array, ptr) ? (__typeof__((array)[0]) *) (ptr) - (array) : -1</span></div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160; </div>
+<div class="line"><a name="l00191"></a><span class="lineno"><a class="line" href="util_8h.html#a29db4ff1f3f1bd2330bf08cb7eb9c1a7">  191</a></span>&#160;<span class="preprocessor">#define IC_PART_OF_ARRAY(array, ptr) \</span></div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;<span class="preprocessor">    ((ptr) &amp;&amp; IC_POINTER_TO_UINT(array) &lt;= IC_POINTER_TO_UINT(ptr) \</span></div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;<span class="preprocessor">     &amp;&amp; IC_POINTER_TO_UINT(ptr) &lt; IC_POINTER_TO_UINT(&amp;(array)[IC_ARRAY_LENGTH(array)]))</span></div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160; </div>
+<div class="line"><a name="l00212"></a><span class="lineno"><a class="line" href="util_8h.html#a750457f9a5ccec6d9adab9492f24756f">  212</a></span>&#160;<span class="preprocessor">#define IC_ARRAY_INDEX_FLOOR(array, ptr) \</span></div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;<span class="preprocessor">    IC_PART_OF_ARRAY(array, ptr) \</span></div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;<span class="preprocessor">    ? (IC_POINTER_TO_UINT(ptr) - IC_POINTER_TO_UINT(array)) / sizeof((array)[0]) : -1</span></div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160; </div>
+<div class="line"><a name="l00223"></a><span class="lineno"><a class="line" href="util_8h.html#a579131cb083db03c9ca0929edcfa3fc1">  223</a></span>&#160;<span class="preprocessor">#define IC_SAME_TYPE(a, b) __builtin_types_compatible_p(__typeof__(a), __typeof__(b))</span></div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160; </div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;<span class="preprocessor">#ifndef __cplusplus</span></div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;<span class="preprocessor">#    define _IC_CONTAINER_OF_VALIDATE(ptr, type, field) \</span></div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;<span class="preprocessor">        IC_BUILD_ASSERT( \</span></div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;<span class="preprocessor">            IC_SAME_TYPE(*(ptr), ((type *) 0)-&gt;field) || IC_SAME_TYPE(*(ptr), void), \</span></div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;<span class="preprocessor">            &quot;pointer type mismatch in IC_CONTAINER_OF&quot;</span> \</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;        );</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;<span class="preprocessor">#    define _IC_CONTAINER_OF_VALIDATE(ptr, type, field)</span></div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160; </div>
+<div class="line"><a name="l00259"></a><span class="lineno"><a class="line" href="util_8h.html#a8c65c91af19268b49ad11ca0aaa402d9">  259</a></span>&#160;<span class="preprocessor">#define IC_CONTAINER_OF(ptr, type, field) \</span></div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;<span class="preprocessor">    ({ \</span></div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;<span class="preprocessor">        _IC_CONTAINER_OF_VALIDATE(ptr, type, field) \</span></div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;<span class="preprocessor">        ((type *) (((char *) (ptr)) - offsetof(type, field))); \</span></div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;<span class="preprocessor">    })</span></div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160; </div>
+<div class="line"><a name="l00271"></a><span class="lineno"><a class="line" href="util_8h.html#a4711ce0eb8f7112cf64b529db38af8a7">  271</a></span>&#160;<span class="preprocessor">#define IC_G_IROUND_UP(x, align) \</span></div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;<span class="preprocessor">    ((((unsigned long) (x) + ((unsigned long) (align) -1)) / (unsigned long) (align)) \</span></div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;<span class="preprocessor">     * (unsigned long) (align))</span></div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160; </div>
+<div class="line"><a name="l00280"></a><span class="lineno"><a class="line" href="util_8h.html#aa7be5ceb52136627b0e7885fc1008fdc">  280</a></span>&#160;<span class="preprocessor">#define IC_IROUND_UP(x, align) _IC_MAKE_SINGLE_EVAL_2(IC_G_IROUND_UP, x, align)</span></div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160; </div>
+<div class="line"><a name="l00288"></a><span class="lineno"><a class="line" href="util_8h.html#a7bdb35cd086b555cf8c7081ad3f20cdb">  288</a></span>&#160;<span class="preprocessor">#define IC_G_IROUND_DOWN(x, align) \</span></div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;<span class="preprocessor">    (((unsigned long) (x) / (unsigned long) (align)) * (unsigned long) (align));</span></div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160; </div>
+<div class="line"><a name="l00296"></a><span class="lineno"><a class="line" href="util_8h.html#a7273ac0c4e8173435f0680e5bb6e7d44">  296</a></span>&#160;<span class="preprocessor">#define IC_IROUND_DOWN(x, align) _IC_MAKE_SINGLE_EVAL_2(IC_IROUND_DOWN, x, align)</span></div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160; </div>
+<div class="line"><a name="l00299"></a><span class="lineno"><a class="line" href="util_8h.html#a5978952c60c61494687de9e008a44b94">  299</a></span>&#160;<span class="preprocessor">#define IC_WB_UP(x) IC_IROUND_UP(x, sizeof(void *))</span></div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160; </div>
+<div class="line"><a name="l00302"></a><span class="lineno"><a class="line" href="util_8h.html#aaf3a9dcb6cca6f3fcb1e398304c03748">  302</a></span>&#160;<span class="preprocessor">#define IC_WB_DN(x) IC_IROUND_DOWN(x, sizeof(void *))</span></div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160; </div>
 <div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160; </div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160; </div>
-<div class="line"><a name="l00314"></a><span class="lineno"><a class="line" href="util_8h.html#a85eb24e09867170717c1c6fd8d034ad5">  314</a></span>&#160;<span class="preprocessor">#define IC_G_CEIL(x) ceil(x)</span></div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160; </div>
-<div class="line"><a name="l00326"></a><span class="lineno"><a class="line" href="util_8h.html#a22dff5e53f6a129e58f07e9ed02de6f3">  326</a></span>&#160;<span class="preprocessor">#define IC_CEIL(x) \</span></div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;<span class="preprocessor">    ({ \</span></div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;<span class="preprocessor">        IC_BUILD_ASSERT( \</span></div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;<span class="preprocessor">            IC_SAME_TYPE(x, float) || IC_SAME_TYPE(x, double) || IC_SAME_TYPE(x, long double), \</span></div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;<span class="preprocessor">            &quot;Argument must be a floating point number!&quot;</span> \</div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;        ); \</div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;        <span class="comment">/* use &lt;tgmath.h&gt; */</span><span class="preprocessor"> \</span></div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;<span class="preprocessor">        IC_REQUIRE_CONSTANT(ceil(x)); \</span></div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;<span class="preprocessor">    })</span></div>
-<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160; </div>
-<div class="line"><a name="l00346"></a><span class="lineno"><a class="line" href="util_8h.html#a37bb3ab2cfa53be02aef2a21f1988315">  346</a></span>&#160;<span class="preprocessor">#define IC_G_FLOOR(x) floor(x)</span></div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160; </div>
-<div class="line"><a name="l00357"></a><span class="lineno"><a class="line" href="util_8h.html#aa5ea5e125928ea017432724f58cf8da6">  357</a></span>&#160;<span class="preprocessor">#define IC_FLOOR(x) \</span></div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;<span class="preprocessor">    ({ \</span></div>
-<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;<span class="preprocessor">        IC_BUILD_ASSERT( \</span></div>
-<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;<span class="preprocessor">            IC_SAME_TYPE(x, float) || IC_SAME_TYPE(x, double) || IC_SAME_TYPE(x, long double), \</span></div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;<span class="preprocessor">            &quot;Argument must be a floating point number!&quot;</span> \</div>
-<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;        ); \</div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;        <span class="comment">/* use &lt;tgmath.h&gt; */</span><span class="preprocessor"> \</span></div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;<span class="preprocessor">        IC_REQUIRE_CONSTANT(floor(x)); \</span></div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;<span class="preprocessor">    })</span></div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160; </div>
-<div class="line"><a name="l00376"></a><span class="lineno"><a class="line" href="util_8h.html#a172e0f2f80060c4a04032f1acc568962">  376</a></span>&#160;<span class="preprocessor">#define IC_G_ROUND(x) (__typeof__(x)) (int64_t) ((x) + ((x) &gt;= 0 ? 0.5 : -0.5))</span></div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160; </div>
-<div class="line"><a name="l00389"></a><span class="lineno"><a class="line" href="util_8h.html#a628fcf8faed913d7fc2633cc80d9ce91">  389</a></span>&#160;<span class="preprocessor">#define IC_ROUND(x) \</span></div>
-<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;<span class="preprocessor">    ({ \</span></div>
-<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;<span class="preprocessor">        IC_BUILD_ASSERT( \</span></div>
-<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;<span class="preprocessor">            IC_SAME_TYPE(x, float) || IC_SAME_TYPE(x, double) || IC_SAME_TYPE(x, long double), \</span></div>
-<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;<span class="preprocessor">            &quot;Argument must be a floating point number!&quot;</span> \</div>
-<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;        ); <span class="comment">/* unclear that ARM&#39;s &lt;tgmath.h&gt; implements round() */</span><span class="preprocessor"> \</span></div>
-<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;<span class="preprocessor">        IC_BUILD_ASSERT((x) &gt;= INT64_MIN || (x) &lt;= INT64_MAX); \</span></div>
-<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;<span class="preprocessor">        IC_REQUIRE_CONSTANT(IC_G_ROUND(x)); \</span></div>
-<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;<span class="preprocessor">    })</span></div>
-<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160; </div>
-<div class="line"><a name="l00413"></a><span class="lineno"><a class="line" href="util_8h.html#a475fce39327ee6acd23ee6167270c34e">  413</a></span>&#160;<span class="preprocessor">#define IC_G_DIV_ROUND_UP(n, d) (((n) + (d) -1) / (d))</span></div>
-<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160; </div>
-<div class="line"><a name="l00431"></a><span class="lineno"><a class="line" href="util_8h.html#a06b0c75388373bae5374d7b142bfbe71">  431</a></span>&#160;<span class="preprocessor">#define IC_DIV_ROUND_UP(n, d) _IC_MAKE_SINGLE_EVAL_2(IC_G_DIV_ROUND_UP, n, d)</span></div>
-<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160; </div>
-<div class="line"><a name="l00448"></a><span class="lineno"><a class="line" href="util_8h.html#aa78a341c3612e38104fcfd40b63bdd03">  448</a></span>&#160;<span class="preprocessor">#define IC_G_DIV_ROUND_CLOSEST(n, d) \</span></div>
-<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;<span class="preprocessor">    ((((n) &lt; 0) ^ ((d) &lt; 0)) ? ((n) - ((d) / 2)) / (d) : ((n) + ((d) / 2)) / (d))</span></div>
-<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160; </div>
-<div class="line"><a name="l00468"></a><span class="lineno"><a class="line" href="util_8h.html#aef094a0f5ad1ffda2babcd4ccb36dcf3">  468</a></span>&#160;<span class="preprocessor">#define IC_DIV_ROUND_CLOSEST(n, d) _IC_MAKE_SINGLE_EVAL_2(IC_G_DIV_ROUND_CLOSEST, n, d)</span></div>
-<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160; </div>
-<div class="line"><a name="l00478"></a><span class="lineno"><a class="line" href="util_8h.html#a267407fd9ad155866679ed7205a41b9f">  478</a></span>&#160;<span class="preprocessor">#define IC_G_MAX(a, b) (((a) &gt; (b)) ? (a) : (b))</span></div>
-<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160; </div>
-<div class="line"><a name="l00490"></a><span class="lineno"><a class="line" href="util_8h.html#a416b919c427c849c1fbf06bee40e393b">  490</a></span>&#160;<span class="preprocessor">#define IC_MAX(a, b) _IC_MAKE_SINGLE_EVAL_2(IC_G_MAX, a, b)</span></div>
+<div class="line"><a name="l00313"></a><span class="lineno"><a class="line" href="util_8h.html#a85eb24e09867170717c1c6fd8d034ad5">  313</a></span>&#160;<span class="preprocessor">#define IC_G_CEIL(x) ceil(x)</span></div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160; </div>
+<div class="line"><a name="l00325"></a><span class="lineno"><a class="line" href="util_8h.html#a22dff5e53f6a129e58f07e9ed02de6f3">  325</a></span>&#160;<span class="preprocessor">#define IC_CEIL(x) \</span></div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;<span class="preprocessor">    ({ \</span></div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;<span class="preprocessor">        IC_BUILD_ASSERT( \</span></div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;<span class="preprocessor">            IC_SAME_TYPE(x, float) || IC_SAME_TYPE(x, double) || IC_SAME_TYPE(x, long double), \</span></div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;<span class="preprocessor">            &quot;Argument must be a floating point number!&quot;</span> \</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;        ); \</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;        <span class="comment">/* use &lt;tgmath.h&gt; */</span><span class="preprocessor"> \</span></div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;<span class="preprocessor">        IC_REQUIRE_CONSTANT(ceil(x)); \</span></div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;<span class="preprocessor">    })</span></div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160; </div>
+<div class="line"><a name="l00345"></a><span class="lineno"><a class="line" href="util_8h.html#a37bb3ab2cfa53be02aef2a21f1988315">  345</a></span>&#160;<span class="preprocessor">#define IC_G_FLOOR(x) floor(x)</span></div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160; </div>
+<div class="line"><a name="l00356"></a><span class="lineno"><a class="line" href="util_8h.html#aa5ea5e125928ea017432724f58cf8da6">  356</a></span>&#160;<span class="preprocessor">#define IC_FLOOR(x) \</span></div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;<span class="preprocessor">    ({ \</span></div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;<span class="preprocessor">        IC_BUILD_ASSERT( \</span></div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;<span class="preprocessor">            IC_SAME_TYPE(x, float) || IC_SAME_TYPE(x, double) || IC_SAME_TYPE(x, long double), \</span></div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;<span class="preprocessor">            &quot;Argument must be a floating point number!&quot;</span> \</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;        ); \</div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;        <span class="comment">/* use &lt;tgmath.h&gt; */</span><span class="preprocessor"> \</span></div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;<span class="preprocessor">        IC_REQUIRE_CONSTANT(floor(x)); \</span></div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;<span class="preprocessor">    })</span></div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160; </div>
+<div class="line"><a name="l00375"></a><span class="lineno"><a class="line" href="util_8h.html#a172e0f2f80060c4a04032f1acc568962">  375</a></span>&#160;<span class="preprocessor">#define IC_G_ROUND(x) (__typeof__(x)) (int64_t) ((x) + ((x) &gt;= 0 ? 0.5 : -0.5))</span></div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160; </div>
+<div class="line"><a name="l00388"></a><span class="lineno"><a class="line" href="util_8h.html#a628fcf8faed913d7fc2633cc80d9ce91">  388</a></span>&#160;<span class="preprocessor">#define IC_ROUND(x) \</span></div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;<span class="preprocessor">    ({ \</span></div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;<span class="preprocessor">        IC_BUILD_ASSERT( \</span></div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;<span class="preprocessor">            IC_SAME_TYPE(x, float) || IC_SAME_TYPE(x, double) || IC_SAME_TYPE(x, long double), \</span></div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;<span class="preprocessor">            &quot;Argument must be a floating point number!&quot;</span> \</div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;        ); <span class="comment">/* unclear that ARM&#39;s &lt;tgmath.h&gt; implements round() */</span><span class="preprocessor"> \</span></div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;<span class="preprocessor">        IC_BUILD_ASSERT((x) &gt;= INT64_MIN || (x) &lt;= INT64_MAX); \</span></div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;<span class="preprocessor">        IC_REQUIRE_CONSTANT(IC_G_ROUND(x)); \</span></div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;<span class="preprocessor">    })</span></div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160; </div>
+<div class="line"><a name="l00412"></a><span class="lineno"><a class="line" href="util_8h.html#a475fce39327ee6acd23ee6167270c34e">  412</a></span>&#160;<span class="preprocessor">#define IC_G_DIV_ROUND_UP(n, d) (((n) + (d) -1) / (d))</span></div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160; </div>
+<div class="line"><a name="l00430"></a><span class="lineno"><a class="line" href="util_8h.html#a06b0c75388373bae5374d7b142bfbe71">  430</a></span>&#160;<span class="preprocessor">#define IC_DIV_ROUND_UP(n, d) _IC_MAKE_SINGLE_EVAL_2(IC_G_DIV_ROUND_UP, n, d)</span></div>
+<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160; </div>
+<div class="line"><a name="l00447"></a><span class="lineno"><a class="line" href="util_8h.html#aa78a341c3612e38104fcfd40b63bdd03">  447</a></span>&#160;<span class="preprocessor">#define IC_G_DIV_ROUND_CLOSEST(n, d) \</span></div>
+<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;<span class="preprocessor">    ((((n) &lt; 0) ^ ((d) &lt; 0)) ? ((n) - ((d) / 2)) / (d) : ((n) + ((d) / 2)) / (d))</span></div>
+<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160; </div>
+<div class="line"><a name="l00467"></a><span class="lineno"><a class="line" href="util_8h.html#aef094a0f5ad1ffda2babcd4ccb36dcf3">  467</a></span>&#160;<span class="preprocessor">#define IC_DIV_ROUND_CLOSEST(n, d) _IC_MAKE_SINGLE_EVAL_2(IC_G_DIV_ROUND_CLOSEST, n, d)</span></div>
+<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160; </div>
+<div class="line"><a name="l00477"></a><span class="lineno"><a class="line" href="util_8h.html#a267407fd9ad155866679ed7205a41b9f">  477</a></span>&#160;<span class="preprocessor">#define IC_G_MAX(a, b) (((a) &gt; (b)) ? (a) : (b))</span></div>
+<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160; </div>
+<div class="line"><a name="l00489"></a><span class="lineno"><a class="line" href="util_8h.html#a416b919c427c849c1fbf06bee40e393b">  489</a></span>&#160;<span class="preprocessor">#define IC_MAX(a, b) _IC_MAKE_SINGLE_EVAL_2(IC_G_MAX, a, b)</span></div>
+<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160; </div>
 <div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160; </div>
-<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160; </div>
-<div class="line"><a name="l00501"></a><span class="lineno"><a class="line" href="util_8h.html#ac63e7af00438fa8d5e2b2a4be869420f">  501</a></span>&#160;<span class="preprocessor">#define IC_G_MIN(a, b) (((a) &lt; (b)) ? (a) : (b))</span></div>
-<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160; </div>
-<div class="line"><a name="l00513"></a><span class="lineno"><a class="line" href="util_8h.html#ae9ec5c1b585c82bdb190cb4cc9cdba3e">  513</a></span>&#160;<span class="preprocessor">#define IC_MIN(a, b) _IC_MAKE_SINGLE_EVAL_2(IC_G_MIN, a, b)</span></div>
-<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160; </div>
-<div class="line"><a name="l00524"></a><span class="lineno"><a class="line" href="util_8h.html#a8c2aaad46a77f72a09b51c43631784ba">  524</a></span>&#160;<span class="preprocessor">#define IC_G_CLAMP(val, low, high) (((val) &lt;= (low)) ? (low) : IC_MIN(val, high))</span></div>
-<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160; </div>
-<div class="line"><a name="l00537"></a><span class="lineno"><a class="line" href="util_8h.html#ad6443d7193212f66793f403d2f211959">  537</a></span>&#160;<span class="preprocessor">#define IC_CLAMP(val, low, high) _IC_MAKE_SINGLE_EVAL_3(IC_G_CLAMP, val, low, high)</span></div>
-<div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160; </div>
-<div class="line"><a name="l00549"></a><span class="lineno"><a class="line" href="util_8h.html#a1e2c20740cc0aa3c3d964b8fce66fd8e">  549</a></span>&#160;<span class="preprocessor">#define IC_G_IN_RANGE(val, min, max) \</span></div>
-<div class="line"><a name="l00550"></a><span class="lineno">  550</span>&#160;<span class="preprocessor">    ((__typeof__(val)) -1) &gt; 0 ? ((val) &lt;= (max)) : ((val) &gt;= (min) &amp;&amp; (val) &lt;= (max))</span></div>
-<div class="line"><a name="l00551"></a><span class="lineno">  551</span>&#160; </div>
-<div class="line"><a name="l00564"></a><span class="lineno"><a class="line" href="util_8h.html#aef9591fd01261385852d8189422315b3">  564</a></span>&#160;<span class="preprocessor">#define IC_IN_RANGE(val, min, max) _IC_MAKE_SINGLE_EVAL_3(IC_G_IN_RANGE, val, min, max)</span></div>
-<div class="line"><a name="l00565"></a><span class="lineno">  565</span>&#160; </div>
-<div class="line"><a name="l00573"></a><span class="lineno"><a class="line" href="util_8h.html#aebc4a73d68b614949038318302ee34dc">  573</a></span>&#160;<span class="preprocessor">#define IC_G_ILOG2(x) \</span></div>
-<div class="line"><a name="l00574"></a><span class="lineno">  574</span>&#160;<span class="preprocessor">    (sizeof(__typeof__(x)) &gt; 4 ? (64 - __builtin_clzll(x) - 1) : (32 - __builtin_clz(x) - 1))</span></div>
-<div class="line"><a name="l00575"></a><span class="lineno">  575</span>&#160; </div>
-<div class="line"><a name="l00583"></a><span class="lineno"><a class="line" href="util_8h.html#a81098cc61a9d973c83eccfcb80741062">  583</a></span>&#160;<span class="preprocessor">#define IC_ILOG2(x) \</span></div>
-<div class="line"><a name="l00584"></a><span class="lineno">  584</span>&#160;<span class="preprocessor">    __builtin_constant_p(x) ? IC_G_ILOG2(x) : ({ \</span></div>
-<div class="line"><a name="l00585"></a><span class="lineno">  585</span>&#160;<span class="preprocessor">        __auto_type const _ic_z_ilog2_x_ = (IC_Z_REQUIRE_UINT(x)); \</span></div>
-<div class="line"><a name="l00586"></a><span class="lineno">  586</span>&#160;<span class="preprocessor">        _ic_z_ilog2_x_ &lt; 1 ? -1 : IC_G_ILOG2(_ic_z_ilog2_x_); \</span></div>
-<div class="line"><a name="l00587"></a><span class="lineno">  587</span>&#160;<span class="preprocessor">    })</span></div>
-<div class="line"><a name="l00588"></a><span class="lineno">  588</span>&#160; </div>
-<div class="line"><a name="l00596"></a><span class="lineno"><a class="line" href="util_8h.html#a2d3536648ae52e10f089cfe8b85a6cf6">  596</a></span>&#160;<span class="preprocessor">#define IC_G_LOG2CEIL(x) (x) &lt; 1 ? 0 : IC_G_ILOG2((x) -1) + 1</span></div>
-<div class="line"><a name="l00597"></a><span class="lineno">  597</span>&#160; </div>
-<div class="line"><a name="l00605"></a><span class="lineno"><a class="line" href="util_8h.html#abbbc33325f14cf2a2b72ff12a10ce079">  605</a></span>&#160;<span class="preprocessor">#define IC_LOG2CEIL(x) _IC_MAKE_SINGLE_EVAL_1(IC_G_LOG2CEIL, x)</span></div>
-<div class="line"><a name="l00606"></a><span class="lineno">  606</span>&#160; </div>
-<div class="line"><a name="l00616"></a><span class="lineno"><a class="line" href="util_8h.html#aa6de804677fa62d35c2529081f490ef1">  616</a></span>&#160;<span class="preprocessor">#define IC_G_NHPOT(x) ((x) &lt; 1 ? 1 : ((x) &gt; (1ULL &lt;&lt; 63) ? 0 : 1ULL &lt;&lt; IC_G_LOG2CEIL(x)))</span></div>
-<div class="line"><a name="l00617"></a><span class="lineno">  617</span>&#160; </div>
-<div class="line"><a name="l00630"></a><span class="lineno"><a class="line" href="util_8h.html#af81bed3fb9b231497f1b259a50907157">  630</a></span>&#160;<span class="preprocessor">#define IC_NHPOT(x) _IC_MAKE_SINGLE_EVAL_1(IC_G_NHPOT, x)</span></div>
-<div class="line"><a name="l00631"></a><span class="lineno">  631</span>&#160; </div>
-<div class="line"><a name="l00638"></a><span class="lineno"><a class="line" href="util_8h.html#ac292f63ca9afb985d81dc609e2f0c0ee">  638</a></span>&#160;<span class="preprocessor">#define IC_G_POW2_CEIL(x) ((x) &lt;= 2UL ? (x) : (1UL &lt;&lt; (8 * sizeof(long) - __builtin_clzl((x) -1))))</span></div>
-<div class="line"><a name="l00639"></a><span class="lineno">  639</span>&#160; </div>
-<div class="line"><a name="l00646"></a><span class="lineno"><a class="line" href="util_8h.html#ac4abafc56da8e815bddd58caca08fdbe">  646</a></span>&#160;<span class="preprocessor">#define IC_POW2_CEIL(x) _IC_MAKE_SINGLE_EVAL_1(IC_G_POW2_CEIL, x)</span></div>
-<div class="line"><a name="l00647"></a><span class="lineno">  647</span>&#160; </div>
-<div class="line"><a name="l00654"></a><span class="lineno"><a class="line" href="util_8h.html#af9a51c05250edb1914235841f43db0b9">  654</a></span>&#160;<span class="preprocessor">#define IC_G_IS_POW2(x) (((x) != 0) &amp;&amp; (((x) &amp; ((x) -1)) == 0))</span></div>
-<div class="line"><a name="l00655"></a><span class="lineno">  655</span>&#160; </div>
-<div class="line"><a name="l00662"></a><span class="lineno"><a class="line" href="util_8h.html#a7009db4e9874c22c6d4f2cfb324fc41a">  662</a></span>&#160;<span class="preprocessor">#define IC_IS_POW2(x) _IC_MAKE_SINGLE_EVAL_1(IC_G_IS_POW2)</span></div>
-<div class="line"><a name="l00663"></a><span class="lineno">  663</span>&#160; </div>
-<div class="line"><a name="l00665"></a><span class="lineno"><a class="line" href="util_8h.html#a2e52e54f1b185eca3348436751e308c4">  665</a></span>&#160;<span class="preprocessor">#define IC_BIT(n) (1UL &lt;&lt; (n))</span></div>
-<div class="line"><a name="l00666"></a><span class="lineno">  666</span>&#160; </div>
-<div class="line"><a name="l00668"></a><span class="lineno"><a class="line" href="util_8h.html#a5c5595afa065f4a3f9c73aa830b95f45">  668</a></span>&#160;<span class="preprocessor">#define IC_BIT64(n) (1ULL &lt;&lt; (n))</span></div>
-<div class="line"><a name="l00669"></a><span class="lineno">  669</span>&#160; </div>
-<div class="line"><a name="l00679"></a><span class="lineno"><a class="line" href="util_8h.html#a6d8116e2a2308e14690cb224befd9e5a">  679</a></span>&#160;<span class="preprocessor">#define IC_G_WRITE_BIT(var, bit, set) (set) ? ((var) | IC_BIT(bit)) : ((var) &amp; ~IC_BIT(bit))</span></div>
-<div class="line"><a name="l00680"></a><span class="lineno">  680</span>&#160; </div>
-<div class="line"><a name="l00690"></a><span class="lineno"><a class="line" href="util_8h.html#a1da74eba346fa9ea4046927fddcf814b">  690</a></span>&#160;<span class="preprocessor">#define IC_WRITE_BIT(var, bit, set) _IC_MAKE_SINGLE_EVAL_3(IC_G_WRITE_BIT, var, bit, set)</span></div>
-<div class="line"><a name="l00691"></a><span class="lineno">  691</span>&#160; </div>
-<div class="line"><a name="l00696"></a><span class="lineno"><a class="line" href="util_8h.html#ac14667989a2ccff09303cefcd158d9d8">  696</a></span>&#160;<span class="preprocessor">#define IC_BIT_MASK(n) (IC_BIT(n) - 1UL)</span></div>
-<div class="line"><a name="l00697"></a><span class="lineno">  697</span>&#160; </div>
-<div class="line"><a name="l00702"></a><span class="lineno"><a class="line" href="util_8h.html#abd2783241708ac1b65c5d8752e98cdbc">  702</a></span>&#160;<span class="preprocessor">#define IC_BIT64_MASK(n) (IC_BIT64(n) - 1ULL)</span></div>
-<div class="line"><a name="l00703"></a><span class="lineno">  703</span>&#160; </div>
-<div class="line"><a name="l00712"></a><span class="lineno"><a class="line" href="util_8h.html#aef34185cc1598e834eb05ffc742e552b">  712</a></span>&#160;<span class="preprocessor">#define IC_G_IS_SHIFTED_BIT_MASK(m, s) (!(((m) &gt;&gt; (s)) &amp; (((m) &gt;&gt; (s)) + 1U)))</span></div>
-<div class="line"><a name="l00713"></a><span class="lineno">  713</span>&#160; </div>
-<div class="line"><a name="l00722"></a><span class="lineno"><a class="line" href="util_8h.html#aec82eeb180fcaf677371c57e9c239e85">  722</a></span>&#160;<span class="preprocessor">#define IC_IS_SHIFTED_BIT_MASK(m, s) _IC_MAKE_SINGLE_EVAL_2(IC_G_IS_SHIFTED_BIT_MASK, m, s)</span></div>
-<div class="line"><a name="l00723"></a><span class="lineno">  723</span>&#160; </div>
-<div class="line"><a name="l00729"></a><span class="lineno"><a class="line" href="util_8h.html#a58e80e92eddb9b5a24e3531b4b0afa3a">  729</a></span>&#160;<span class="preprocessor">#define IC_G_IS_BIT_MASK(m) IC_G_IS_SHIFTED_BIT_MASK(m, 0)</span></div>
-<div class="line"><a name="l00730"></a><span class="lineno">  730</span>&#160; </div>
-<div class="line"><a name="l00736"></a><span class="lineno"><a class="line" href="util_8h.html#aba0e9f422c8e7b5af89febecd4b1583c">  736</a></span>&#160;<span class="preprocessor">#define IC_IS_BIT_MASK(m) IC_IS_SHIFTED_BIT_MASK(m, 0)</span></div>
-<div class="line"><a name="l00737"></a><span class="lineno">  737</span>&#160; </div>
-<div class="line"><a name="l00743"></a><span class="lineno"><a class="line" href="util_8h.html#a6daab86267b1f969cc0ac20d6db44723">  743</a></span>&#160;<span class="preprocessor">#define IC_G_BSWAP24(x) \</span></div>
-<div class="line"><a name="l00744"></a><span class="lineno">  744</span>&#160;<span class="preprocessor">    (((x) &gt;&gt; 16) &amp; 0x0000FF) | (((x) &gt;&gt; 00) &amp; 0x00FF00) | ((((x) &amp; 0x0000FF) &lt;&lt; 16))</span></div>
-<div class="line"><a name="l00745"></a><span class="lineno">  745</span>&#160; </div>
-<div class="line"><a name="l00751"></a><span class="lineno"><a class="line" href="util_8h.html#a7185db2e58ce913bc76fbe7210d548f8">  751</a></span>&#160;<span class="preprocessor">#define IC_BSWAP24(x) _IC_MAKE_SINGLE_EVAL_1(IC_G_BSWAP24, x)</span></div>
-<div class="line"><a name="l00752"></a><span class="lineno">  752</span>&#160; </div>
-<div class="line"><a name="l00753"></a><span class="lineno">  753</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00754"></a><span class="lineno">  754</span>&#160;}</div>
-<div class="line"><a name="l00755"></a><span class="lineno">  755</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00500"></a><span class="lineno"><a class="line" href="util_8h.html#ac63e7af00438fa8d5e2b2a4be869420f">  500</a></span>&#160;<span class="preprocessor">#define IC_G_MIN(a, b) (((a) &lt; (b)) ? (a) : (b))</span></div>
+<div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160; </div>
+<div class="line"><a name="l00512"></a><span class="lineno"><a class="line" href="util_8h.html#ae9ec5c1b585c82bdb190cb4cc9cdba3e">  512</a></span>&#160;<span class="preprocessor">#define IC_MIN(a, b) _IC_MAKE_SINGLE_EVAL_2(IC_G_MIN, a, b)</span></div>
+<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160; </div>
+<div class="line"><a name="l00523"></a><span class="lineno"><a class="line" href="util_8h.html#a8c2aaad46a77f72a09b51c43631784ba">  523</a></span>&#160;<span class="preprocessor">#define IC_G_CLAMP(val, low, high) (((val) &lt;= (low)) ? (low) : IC_MIN(val, high))</span></div>
+<div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160; </div>
+<div class="line"><a name="l00536"></a><span class="lineno"><a class="line" href="util_8h.html#ad6443d7193212f66793f403d2f211959">  536</a></span>&#160;<span class="preprocessor">#define IC_CLAMP(val, low, high) _IC_MAKE_SINGLE_EVAL_3(IC_G_CLAMP, val, low, high)</span></div>
+<div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160; </div>
+<div class="line"><a name="l00548"></a><span class="lineno"><a class="line" href="util_8h.html#a1e2c20740cc0aa3c3d964b8fce66fd8e">  548</a></span>&#160;<span class="preprocessor">#define IC_G_IN_RANGE(val, min, max) \</span></div>
+<div class="line"><a name="l00549"></a><span class="lineno">  549</span>&#160;<span class="preprocessor">    ((__typeof__(val)) -1) &gt; 0 ? ((val) &lt;= (max)) : ((val) &gt;= (min) &amp;&amp; (val) &lt;= (max))</span></div>
+<div class="line"><a name="l00550"></a><span class="lineno">  550</span>&#160; </div>
+<div class="line"><a name="l00563"></a><span class="lineno"><a class="line" href="util_8h.html#aef9591fd01261385852d8189422315b3">  563</a></span>&#160;<span class="preprocessor">#define IC_IN_RANGE(val, min, max) _IC_MAKE_SINGLE_EVAL_3(IC_G_IN_RANGE, val, min, max)</span></div>
+<div class="line"><a name="l00564"></a><span class="lineno">  564</span>&#160; </div>
+<div class="line"><a name="l00572"></a><span class="lineno"><a class="line" href="util_8h.html#aebc4a73d68b614949038318302ee34dc">  572</a></span>&#160;<span class="preprocessor">#define IC_G_ILOG2(x) \</span></div>
+<div class="line"><a name="l00573"></a><span class="lineno">  573</span>&#160;<span class="preprocessor">    (sizeof(__typeof__(x)) &gt; 4 ? (64 - __builtin_clzll(x) - 1) : (32 - __builtin_clz(x) - 1))</span></div>
+<div class="line"><a name="l00574"></a><span class="lineno">  574</span>&#160; </div>
+<div class="line"><a name="l00582"></a><span class="lineno"><a class="line" href="util_8h.html#a81098cc61a9d973c83eccfcb80741062">  582</a></span>&#160;<span class="preprocessor">#define IC_ILOG2(x) \</span></div>
+<div class="line"><a name="l00583"></a><span class="lineno">  583</span>&#160;<span class="preprocessor">    __builtin_constant_p(x) ? IC_G_ILOG2(x) : ({ \</span></div>
+<div class="line"><a name="l00584"></a><span class="lineno">  584</span>&#160;<span class="preprocessor">        __auto_type const _ic_z_ilog2_x_ = (IC_Z_REQUIRE_UINT(x)); \</span></div>
+<div class="line"><a name="l00585"></a><span class="lineno">  585</span>&#160;<span class="preprocessor">        _ic_z_ilog2_x_ &lt; 1 ? -1 : IC_G_ILOG2(_ic_z_ilog2_x_); \</span></div>
+<div class="line"><a name="l00586"></a><span class="lineno">  586</span>&#160;<span class="preprocessor">    })</span></div>
+<div class="line"><a name="l00587"></a><span class="lineno">  587</span>&#160; </div>
+<div class="line"><a name="l00595"></a><span class="lineno"><a class="line" href="util_8h.html#a2d3536648ae52e10f089cfe8b85a6cf6">  595</a></span>&#160;<span class="preprocessor">#define IC_G_LOG2CEIL(x) (x) &lt; 1 ? 0 : IC_G_ILOG2((x) -1) + 1</span></div>
+<div class="line"><a name="l00596"></a><span class="lineno">  596</span>&#160; </div>
+<div class="line"><a name="l00604"></a><span class="lineno"><a class="line" href="util_8h.html#abbbc33325f14cf2a2b72ff12a10ce079">  604</a></span>&#160;<span class="preprocessor">#define IC_LOG2CEIL(x) _IC_MAKE_SINGLE_EVAL_1(IC_G_LOG2CEIL, x)</span></div>
+<div class="line"><a name="l00605"></a><span class="lineno">  605</span>&#160; </div>
+<div class="line"><a name="l00615"></a><span class="lineno"><a class="line" href="util_8h.html#aa6de804677fa62d35c2529081f490ef1">  615</a></span>&#160;<span class="preprocessor">#define IC_G_NHPOT(x) ((x) &lt; 1 ? 1 : ((x) &gt; (1ULL &lt;&lt; 63) ? 0 : 1ULL &lt;&lt; IC_G_LOG2CEIL(x)))</span></div>
+<div class="line"><a name="l00616"></a><span class="lineno">  616</span>&#160; </div>
+<div class="line"><a name="l00629"></a><span class="lineno"><a class="line" href="util_8h.html#af81bed3fb9b231497f1b259a50907157">  629</a></span>&#160;<span class="preprocessor">#define IC_NHPOT(x) _IC_MAKE_SINGLE_EVAL_1(IC_G_NHPOT, x)</span></div>
+<div class="line"><a name="l00630"></a><span class="lineno">  630</span>&#160; </div>
+<div class="line"><a name="l00637"></a><span class="lineno"><a class="line" href="util_8h.html#ac292f63ca9afb985d81dc609e2f0c0ee">  637</a></span>&#160;<span class="preprocessor">#define IC_G_POW2_CEIL(x) ((x) &lt;= 2UL ? (x) : (1UL &lt;&lt; (8 * sizeof(long) - __builtin_clzl((x) -1))))</span></div>
+<div class="line"><a name="l00638"></a><span class="lineno">  638</span>&#160; </div>
+<div class="line"><a name="l00645"></a><span class="lineno"><a class="line" href="util_8h.html#ac4abafc56da8e815bddd58caca08fdbe">  645</a></span>&#160;<span class="preprocessor">#define IC_POW2_CEIL(x) _IC_MAKE_SINGLE_EVAL_1(IC_G_POW2_CEIL, x)</span></div>
+<div class="line"><a name="l00646"></a><span class="lineno">  646</span>&#160; </div>
+<div class="line"><a name="l00653"></a><span class="lineno"><a class="line" href="util_8h.html#af9a51c05250edb1914235841f43db0b9">  653</a></span>&#160;<span class="preprocessor">#define IC_G_IS_POW2(x) (((x) != 0) &amp;&amp; (((x) &amp; ((x) -1)) == 0))</span></div>
+<div class="line"><a name="l00654"></a><span class="lineno">  654</span>&#160; </div>
+<div class="line"><a name="l00661"></a><span class="lineno"><a class="line" href="util_8h.html#a7009db4e9874c22c6d4f2cfb324fc41a">  661</a></span>&#160;<span class="preprocessor">#define IC_IS_POW2(x) _IC_MAKE_SINGLE_EVAL_1(IC_G_IS_POW2)</span></div>
+<div class="line"><a name="l00662"></a><span class="lineno">  662</span>&#160; </div>
+<div class="line"><a name="l00664"></a><span class="lineno"><a class="line" href="util_8h.html#a2e52e54f1b185eca3348436751e308c4">  664</a></span>&#160;<span class="preprocessor">#define IC_BIT(n) (1UL &lt;&lt; (n))</span></div>
+<div class="line"><a name="l00665"></a><span class="lineno">  665</span>&#160; </div>
+<div class="line"><a name="l00667"></a><span class="lineno"><a class="line" href="util_8h.html#a5c5595afa065f4a3f9c73aa830b95f45">  667</a></span>&#160;<span class="preprocessor">#define IC_BIT64(n) (1ULL &lt;&lt; (n))</span></div>
+<div class="line"><a name="l00668"></a><span class="lineno">  668</span>&#160; </div>
+<div class="line"><a name="l00678"></a><span class="lineno"><a class="line" href="util_8h.html#a6d8116e2a2308e14690cb224befd9e5a">  678</a></span>&#160;<span class="preprocessor">#define IC_G_WRITE_BIT(var, bit, set) (set) ? ((var) | IC_BIT(bit)) : ((var) &amp; ~IC_BIT(bit))</span></div>
+<div class="line"><a name="l00679"></a><span class="lineno">  679</span>&#160; </div>
+<div class="line"><a name="l00689"></a><span class="lineno"><a class="line" href="util_8h.html#a1da74eba346fa9ea4046927fddcf814b">  689</a></span>&#160;<span class="preprocessor">#define IC_WRITE_BIT(var, bit, set) _IC_MAKE_SINGLE_EVAL_3(IC_G_WRITE_BIT, var, bit, set)</span></div>
+<div class="line"><a name="l00690"></a><span class="lineno">  690</span>&#160; </div>
+<div class="line"><a name="l00695"></a><span class="lineno"><a class="line" href="util_8h.html#ac14667989a2ccff09303cefcd158d9d8">  695</a></span>&#160;<span class="preprocessor">#define IC_BIT_MASK(n) (IC_BIT(n) - 1UL)</span></div>
+<div class="line"><a name="l00696"></a><span class="lineno">  696</span>&#160; </div>
+<div class="line"><a name="l00701"></a><span class="lineno"><a class="line" href="util_8h.html#abd2783241708ac1b65c5d8752e98cdbc">  701</a></span>&#160;<span class="preprocessor">#define IC_BIT64_MASK(n) (IC_BIT64(n) - 1ULL)</span></div>
+<div class="line"><a name="l00702"></a><span class="lineno">  702</span>&#160; </div>
+<div class="line"><a name="l00711"></a><span class="lineno"><a class="line" href="util_8h.html#aef34185cc1598e834eb05ffc742e552b">  711</a></span>&#160;<span class="preprocessor">#define IC_G_IS_SHIFTED_BIT_MASK(m, s) (!(((m) &gt;&gt; (s)) &amp; (((m) &gt;&gt; (s)) + 1U)))</span></div>
+<div class="line"><a name="l00712"></a><span class="lineno">  712</span>&#160; </div>
+<div class="line"><a name="l00721"></a><span class="lineno"><a class="line" href="util_8h.html#aec82eeb180fcaf677371c57e9c239e85">  721</a></span>&#160;<span class="preprocessor">#define IC_IS_SHIFTED_BIT_MASK(m, s) _IC_MAKE_SINGLE_EVAL_2(IC_G_IS_SHIFTED_BIT_MASK, m, s)</span></div>
+<div class="line"><a name="l00722"></a><span class="lineno">  722</span>&#160; </div>
+<div class="line"><a name="l00728"></a><span class="lineno"><a class="line" href="util_8h.html#a58e80e92eddb9b5a24e3531b4b0afa3a">  728</a></span>&#160;<span class="preprocessor">#define IC_G_IS_BIT_MASK(m) IC_G_IS_SHIFTED_BIT_MASK(m, 0)</span></div>
+<div class="line"><a name="l00729"></a><span class="lineno">  729</span>&#160; </div>
+<div class="line"><a name="l00735"></a><span class="lineno"><a class="line" href="util_8h.html#aba0e9f422c8e7b5af89febecd4b1583c">  735</a></span>&#160;<span class="preprocessor">#define IC_IS_BIT_MASK(m) IC_IS_SHIFTED_BIT_MASK(m, 0)</span></div>
+<div class="line"><a name="l00736"></a><span class="lineno">  736</span>&#160; </div>
+<div class="line"><a name="l00742"></a><span class="lineno"><a class="line" href="util_8h.html#a6daab86267b1f969cc0ac20d6db44723">  742</a></span>&#160;<span class="preprocessor">#define IC_G_BSWAP24(x) \</span></div>
+<div class="line"><a name="l00743"></a><span class="lineno">  743</span>&#160;<span class="preprocessor">    (((x) &gt;&gt; 16) &amp; 0x0000FF) | (((x) &gt;&gt; 00) &amp; 0x00FF00) | ((((x) &amp; 0x0000FF) &lt;&lt; 16))</span></div>
+<div class="line"><a name="l00744"></a><span class="lineno">  744</span>&#160; </div>
+<div class="line"><a name="l00750"></a><span class="lineno"><a class="line" href="util_8h.html#a7185db2e58ce913bc76fbe7210d548f8">  750</a></span>&#160;<span class="preprocessor">#define IC_BSWAP24(x) _IC_MAKE_SINGLE_EVAL_1(IC_G_BSWAP24, x)</span></div>
+<div class="line"><a name="l00751"></a><span class="lineno">  751</span>&#160; </div>
+<div class="line"><a name="l00752"></a><span class="lineno">  752</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00753"></a><span class="lineno">  753</span>&#160;}</div>
+<div class="line"><a name="l00754"></a><span class="lineno">  754</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aassert__constant_8h_html"><div class="ttname"><a href="assert__constant_8h.html">assert_constant.h</a></div></div>
 <div class="ttc" id="aassert__type_8h_html"><div class="ttname"><a href="assert__type_8h.html">assert_type.h</a></div></div>
 <div class="ttc" id="abuild__assert_8h_html"><div class="ttname"><a href="build__assert_8h.html">build_assert.h</a></div></div>
