@@ -138,8 +138,7 @@ extern "C" {
  * @param array A C array (that has not decayed to a pointer)
  * @return size_t - size of the array in 8-bit bytes
  */
-#    define IC_ARRAY_SIZE(array) \
-        (size_t)(_IC_IS_ARRAY(array) + (sizeof(array) / sizeof((array)[0])))
+#    define IC_ARRAY_SIZE(array) (size_t)(_IC_IS_ARRAY(array) + sizeof(array))
 
 #endif /* not __cplusplus */
 
