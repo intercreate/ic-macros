@@ -2,7 +2,7 @@
 PROJECT_NAME=ic-macros
 
 [VARIABLES]
-TOOLCHAIN_GNU_ARM_NONE_EABI_PATH=$HOME/.local/xPacks/@xpack-dev-tools/arm-none-eabi-gcc/12.3.1-1.2.1/.content/bin
+TOOLCHAIN_GNU_ARM_NONE_EABI_PATH=$HOME/.local/xPacks/@xpack-dev-tools/arm-none-eabi-gcc/13.2.1-1.1.1/.content/bin
 TOOLCHAIN_GNU_ARM_NONE_EABI_PREFIX=arm-none-eabi
 
 TOOLCHAIN_GNU_ARM_ZEPHYR_EABI_PATH=$HOME/zephyr-sdk-0.16.3/arm-zephyr-eabi/bin

@@ -31,7 +31,7 @@ jobs:
       
       - name: Install arm-none-eabi-gcc
         continue-on-error: true
-        run: xpm install @xpack-dev-tools/arm-none-eabi-gcc@latest
+        run: xpm install @xpack-dev-tools/arm-none-eabi-gcc@13.2.1-1.1.1
       
       - name: Install Zephyr SDK
         run: |
