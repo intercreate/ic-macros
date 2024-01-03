@@ -50,7 +50,7 @@ The following assumes that you are on an x86 machine and would like to run tests
 #### Install the xPack GNU Arm Embedded GCC
 
 * [Install `xpm`](https://xpack.github.io/xpm/install/): `npm install --global xpm@latest`
-* [Install the Arm GNU toolchain](https://xpack.github.io/dev-tools/arm-none-eabi-gcc/install/): `xpm install @xpack-dev-tools/arm-none-eabi-gcc@latest`
+* [Install the Arm GNU toolchain](https://xpack.github.io/dev-tools/arm-none-eabi-gcc/install/): `xpm install @xpack-dev-tools/arm-none-eabi-gcc@13.2.1-1.1.1`
 
 Add to your `envr-local` if the path and/or version is different from the one specified in `envr-default`:
 
