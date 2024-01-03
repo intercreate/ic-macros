@@ -69,12 +69,8 @@ Reference: https://docs.zephyrproject.org/latest/develop/getting_started/index.h
 
 ```
 cd ~
-wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.3/zephyr-sdk-0.16.3_linux-x86_64.tar.xz
-wget -O - https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.3/sha256.sum | shasum --check --ignore-missing
-tar xf zephyr-sdk-0.16.3_linux-x86_64.tar.xz
-rm zephyr-sdk-0.16.3_linux-x86_64.tar.xz
-cd zephyr-sdk-0.16.3
-./setup.sh -t arm-zephyr-eabi
+wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.4/toolchain_linux-x86_64_arm-zephyr-eabi.tar.xz
+tar -xf toolchain_linux-x86_64_arm-zephyr-eabi.tar.xz # unpacked at ~/arm-zephyr-eabi
 
 cd ~/<back to this repository>
 ```
